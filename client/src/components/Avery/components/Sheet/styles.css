@@ -1,0 +1,13 @@
+.sheet {
+  display: inline-block;
+
+  font-size: 0.514in;
+  padding: 0.7em 0;
+}
+
+.sheet.sheet-preview {
+  border: 1px solid #CDCDCD;
+
+  font-size: 0.3125in;
+  padding: 1em 0;
+}

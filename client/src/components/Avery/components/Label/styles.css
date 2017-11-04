@@ -1,0 +1,14 @@
+.label {
+  height: 4em;
+  width: 8em;
+  margin: 0 0.125em;
+
+  display: inline-block;
+  overflow: hidden;
+}
+
+.label-insert {
+  border: 1px solid #CDCDCD;
+  border-radius: 0.4em;
+  height: 100%;
+}

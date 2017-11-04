@@ -1,0 +1,18 @@
+.sheet-preview {
+  margin-left: 40px;
+  float: right;
+}
+
+.sheet-preview .sheet {
+  margin: 20px;
+  margin-right: 0;
+}
+
+.sheet-preview .sheet:first-of-type {
+  margin-top: 0;
+}
+
+.sheet-preview .sheet {
+  font-size: 0.3125in;
+  border: 1px solid #CDCDCD;
+}

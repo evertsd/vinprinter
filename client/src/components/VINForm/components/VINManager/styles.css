@@ -1,0 +1,61 @@
+.vin-manager {
+  margin: 0;
+}
+
+ul {
+  list-style-type: none;
+  padding-left: 0;
+  display: inline-block;
+
+  max-height: 600px;
+  overflow: auto;
+}
+
+.vehicle-item {
+  border: 1px solid #CDCDCD;
+  border-bottom: 0;
+}
+
+.vehicle-item.selected {
+  background: #6797DF;
+}
+
+.vehicle-item:last-of-type {
+  border-bottom: 1px solid #CDCDCD;
+}
+
+.vehicle-item > div:first-of-type span{
+  display: inline-block;
+
+  width: 100%;
+  padding: 9px;
+  text-align: center;
+}
+
+.vehicle-item > div:last-of-type {
+  padding: 0;
+}
+
+.vehicle-item > div:last-of-type a,
+.vehicle-item > div:last-of-type input {
+  display: inline-block;
+  padding: 12px;
+  width: 100%;
+
+  cursor: pointer;
+}
+
+.vin-list-header > div {
+  padding: 6px 12px;
+  border: 1px solid #CDCDCD;
+  border-bottom: 0;
+}
+
+.vin-list-header span {
+  font-weight: 200;
+  text-transform: uppercase;
+}
+
+section {
+  margin-top: 20px;
+}

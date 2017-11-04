@@ -1,0 +1,38 @@
+.label-insert {
+  font-size: 0.8em;
+  line-height: 1.125em;
+}
+
+.vin {
+  width: 2em;
+  height: 10em;
+  padding-top: 0.25em;
+
+  position: relative;
+  display: inline-block;
+  font-family: 'Lato', bold;
+}
+
+.vin span {
+  display: inline-block;
+
+  width: 100%;
+  text-align: center;
+}
+
+.vin-left {
+  left: 4em;
+  top: -1.55em;
+  padding-top: 0.375em;
+}
+
+.vin-right {
+  left: 1.9em;
+  top: -3.65em;
+
+  border-right: 1px solid #CDCDCD;
+}
+
+.rotate {
+  -webkit-transform: rotate(-270deg);
+}

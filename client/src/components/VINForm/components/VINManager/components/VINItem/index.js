@@ -37,7 +37,7 @@ class VINItem extends Component {
           <span>{this.state.index}</span>
         </div>
         <div className="col-sm-8 vehicle-item-vin">
-          <a className="btn" onClick={event => this._selectItem()}>
+          <a className="clickable" onClick={event => this._selectItem()}>
             {this.state.item.vin}
           </a>
         </div>

@@ -1,5 +1,4 @@
 import { connect } from 'react-redux'
-import { DEFAULT_VEHICLES_FORM } from '../../components/VINForm/services/const'
 import VINSheetPrinter from '../../components/VINForm/components/VINSheetPrinter'
 
 const mapStateToProps = (state, ownProps) => {

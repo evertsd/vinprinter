@@ -2,7 +2,6 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import VINLabel from '../VINLabel'
 import Sheet from '../../../Avery/components/Sheet'
-import { DEFAULT_SHEET_LABLES } from '../../services/const'
 
 const buildLabelState = (sheet, labels) => ([
   labels[sheet.labelPositions[0]] || {},

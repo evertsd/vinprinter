@@ -4,7 +4,10 @@ import {
   FORM_SUBMISSION_SUCCESS,
 } from './actions'
 
-import formLabelReducer, { REDUCER_KEY as LABEL_REDUCER_KEY } from './labelReducer'
+import formLabelReducer, {
+  REDUCER_KEY as LABEL_REDUCER_KEY,
+  initialState as labelInitialState
+} from './labelReducer'
 import formSheetReducer from './sheetReducer'
 import formSheetPositionReducer from './sheetPositionReducer'
 
@@ -32,7 +35,7 @@ const formStateReducer = function(state = initialState, action) {
 }
 
 export const initialFromState = {
-  labels: {},
+  [LABEL_REDUCER_KEY]: labelInitialState,
   sheets: {},
   sheetPositions: [],
   metadata: initialState

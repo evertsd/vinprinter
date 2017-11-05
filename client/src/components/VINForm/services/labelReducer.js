@@ -3,28 +3,9 @@ import { REHYDRATE } from 'redux-persist/constants'
 import {
   FORM_UPDATE_LABEL,
 } from './actions'
+import hydrateState from './const'
 
 export const REDUCER_KEY = 'labels'
-export const find = (labels, labelPositions, labelIndex) => {
-  return labels[labelPositions[labelIndex]];
-}
-
-export const create = (attributes = {}) => {
-  return {
-    id: uuidv4(),
-    vin: '',
-    ...attributes,
-  };
-}
-
-export const findOrCreateLabel = (labels, labelPositions, labelIndex, attributes) => {
-  const label = find(labels, labelPositions, labelIndex);
-  console.info('labelReducer.findOrCreateLabel', label)
-  if (label) return label
-
-  return create(attributes)
-}
-
 export const initialState = {}
 
 export default function formLabelReducer(state = initialState, action) {
@@ -38,10 +19,22 @@ export default function formLabelReducer(state = initialState, action) {
         }
       }
     case REHYDRATE:
-      var labels = action.payload.printVINForm[REDUCER_KEY]
+      var labels = hydrateState(action.payload, REDUCER_KEY)
       if (labels) return { ...state, ...labels }
       return state
     default:
       return state
   }
+}
+
+export const find = (labels, labelPositions, labelIndex) => {
+  return labels[labelPositions[labelIndex]];
+}
+
+export const create = (attributes = {}) => {
+  return {
+    id: uuidv4(),
+    vin: '',
+    ...attributes,
+  };
 }

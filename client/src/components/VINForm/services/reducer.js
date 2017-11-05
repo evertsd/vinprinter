@@ -4,7 +4,7 @@ import {
   FORM_SUBMISSION_SUCCESS,
 } from './actions'
 
-import formLabelReducer from './labelReducer'
+import formLabelReducer, { REDUCER_KEY as LABEL_REDUCER_KEY } from './labelReducer'
 import formSheetReducer from './sheetReducer'
 import formSheetPositionReducer from './sheetPositionReducer'
 
@@ -39,7 +39,7 @@ export const initialFromState = {
 }
 
 export default combineReducers({
-  labels: formLabelReducer,
+  [LABEL_REDUCER_KEY]: formLabelReducer,
   sheets: formSheetReducer,
   sheetPositions: formSheetPositionReducer,
   metadata: formStateReducer

@@ -31,7 +31,6 @@ class VINSheet extends PureComponent {
   }
 
   render() {
-    console.info('VINSheet.render', this.state)
     let renderedLabels = this._renderLabels(this.state.labels)
 
     return (

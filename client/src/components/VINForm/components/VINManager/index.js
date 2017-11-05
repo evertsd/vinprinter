@@ -8,6 +8,7 @@ import { find, create } from '../../services/labelReducer'
 import './styles.css'
 
 const DEFAULT_LABEL_INDEX = 0
+const LABELS_PER_SHEET = 10
 
 const findOrCreateLabel = (state, labels, labelPositions, index) => {
   return state.labels[index] ||
@@ -28,6 +29,12 @@ const buildLabelState = (state, sheet, labels) => ([
   findOrCreateLabel(state, labels, sheet.labelPositions, 9),
 ]);
 
+const initialState = {
+  labels: [],
+  labelIndex: DEFAULT_LABEL_INDEX,
+  labelErrors: {}
+}
+
 const buildState = (props, state) => {
   const sheet = props.sheets[props.sheetPositions[props.currentSheet]]
   const labels = buildLabelState(state, sheet, props.labels)
@@ -39,16 +46,13 @@ const buildState = (props, state) => {
     labels,
     label: labels[labelIndex],
     labelIndex,
-    sheetCount: props.sheets.length
+    sheetCount: props.sheetPositions.length
   }
 }
 
 class VINManager extends Component {
   componentWillMount() {
-    this.state = buildState(this.props, {
-      labels: [],
-      labelIndex: DEFAULT_LABEL_INDEX
-    })
+    this.state = buildState(this.props, initialState)
   }
 
   componentWillReceiveProps(nextProps) {
@@ -59,6 +63,7 @@ class VINManager extends Component {
   }
 
   render() {
+    console.info('VINManager.render', this.state)
     return (
       <div className="vin-manager">
         <VINInput
@@ -110,13 +115,21 @@ class VINManager extends Component {
     });
   }
 
-  _submitPendingVIN = () => (
-    this.props.updateVehicle(
-      this.state.sheet.id,
-      this.state.labelIndex,
-      this.state.label
-    )
-  )
+  _submitPendingVIN = () => {
+    const {
+      sheet, label, labelIndex
+    } = this.state
+
+    const newLabelIndex = (labelIndex + 1) > LABELS_PER_SHEET ? DEFAULT_LABEL_INDEX : labelIndex + 1;
+    console.info('VINManager_submitPendingVIN, labelIndex, newLabelIndex', labelIndex, newLabelIndex)
+    this.setState({
+      ...this.state,
+      labelIndex: newLabelIndex,
+      label: this.state.labels[newLabelIndex]
+    }, () => (
+      this.props.updateVehicle(sheet.id, labelIndex, label)
+    ));
+  }
 
   _requiresStateUpdates(nextProps) {
     /*let labels = nextProps.vehiclesForm.sheets

@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import uuidv4 from 'uuid/v4'
 import logo from './logo.svg'
 import VINManagerContainer from './containers/VINManagerContainer'
 import VINSheetPreviewContainer from './containers/VINSheetPreviewContainer'
@@ -8,6 +10,13 @@ import { submitForm } from './components/VINForm/services/actions'
 import './App.css'
 
 class App extends Component {
+  componentWillMount() {
+    console.info('App.props', this.props)
+    if (!Object.keys(this.props.sheets).length) {
+      this.props.addSheet(0, uuidv4())
+    }
+  }
+
   render() {
     return (
       <div id="app">
@@ -30,6 +39,11 @@ class App extends Component {
       </div>
     )
   }
+}
+
+App.PropTypes = {
+  sheets: PropTypes.shape.isRequired,
+  addSheet: PropTypes.func.isRequired
 }
 
 export default App

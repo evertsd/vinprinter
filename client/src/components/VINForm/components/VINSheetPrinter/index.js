@@ -1,45 +1,31 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import VINLabel from '../VINLabel'
 import VINSheet from '../VINSheet'
 
 import './styles.css'
 
-const VEHICLES_PER_SHEET = 10
-
 class VINSheetPrinter extends Component {
-  componentWillMount() {
-    this.state = {
-      sheets: this.props.sheets
-    }
-  }
-
-  componentWillReceiveProps(nextProps) {
-    this.setState({
-      ...this.state,
-      sheets: nextProps.sheets,
-    })
-  }
-
   render() {
     return (
       <div className="print-view">
-        {this._renderSheets(this.state.sheets)}
+        {this._renderSheets(this.props.sheets)}
       </div>
     )
   }
 
-  _renderSheets(sheets) {
-    return sheets.map((sheet) => {
-      return <VINSheet sheet={sheet} preview={false} />
-    })
-  }
+  _renderSheets = sheets => (
+    sheets.map(sheet => (
+      <VINSheet key={`print-sheet-${sheet.id}`} sheet={sheet} labels={this.props.labels} preview={false} />
+    ))
+  )
 }
 
 VINSheetPrinter.PropTypes = {
   sheets: PropTypes.arrayOf(PropTypes.shape({
-    labels: PropTypes.shape
-  }))
+    id: PropTypes.number,
+    labelPositions: PropTypes.shape
+  })),
+  labels: PropTypes.shape
 }
 
 export default VINSheetPrinter

@@ -67,7 +67,8 @@ class Sheet extends Component {
 
     return (
       <LabelRow
-        key={labelState.renderedLabels.length}
+        key={`avery-label-row-${labelState.renderedLabels.length}`}
+        rowNumber={labelState.renderedLabels.length}
         labels={labels} />
     )
   }

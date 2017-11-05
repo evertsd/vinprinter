@@ -3,14 +3,14 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux'
 import 'bootstrap/dist/css/bootstrap.css'
 import './index.css'
-import App from './App'
+import AppContainer from './containers/AppContainer'
 import Navbar from './components/Navbar'
 import { render } from 'react-dom'
 import store from './store'
 
 render(
   <Provider store={store}>
-    <App />
+    <AppContainer />
   </Provider>,
   document.getElementById('root')
 );

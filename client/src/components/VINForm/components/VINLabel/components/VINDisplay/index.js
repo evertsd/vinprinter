@@ -15,13 +15,17 @@ class VINDisplay extends Component {
     )
   }
 
+  _getSpanKey = index => (
+    `vin-display-span-${this.props.id}-${this.props.side}-${index}`
+  )
+
   _renderVin(vin) {
     if (!vin) return Array(9).fill('')
 
     let i = 0, letters = []
 
     while (i < vin.length) {
-      letters.push(<span>{vin[i++]}</span>)
+      letters.push(<span key={this._getSpanKey(i)}>{vin[i++]}</span>)
     }
 
     return letters
@@ -29,6 +33,7 @@ class VINDisplay extends Component {
 }
 
 VINDisplay.PropTypes = {
+  id: PropTypes.string.isRequired,
   vin: PropTypes.number.isRequired,
   side: PropTypes.string.isRequired
 }

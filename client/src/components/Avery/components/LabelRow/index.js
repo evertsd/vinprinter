@@ -6,9 +6,9 @@ import './styles.css'
 
 class LabelRow extends Component {
   render() {
-    let labels = this.props.labels.map((labelItem) => {
+    let labels = this.props.labels.map((labelItem, labelIndex) => {
       return (
-        <Label>
+        <Label key={`avery-label-${this.props.rowNumber}-${labelIndex}`}>
           {labelItem}
         </Label>
       )
@@ -26,6 +26,7 @@ LabelRow.PropTypes = {
   labels: PropTypes.arrayOf(PropTypes.shape({
     vin: PropTypes.number
   })),
+  rowNumber: PropTypes.number,
 }
 
 export default LabelRow

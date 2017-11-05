@@ -1,20 +1,30 @@
 import { connect } from 'react-redux'
 import {
-  updateVehicleInForm
+  updateSheetLabel
 } from '../../components/VINForm/services/actions'
 import VINManager from '../../components/VINForm/components/VINManager'
 
 const mapStateToProps = (state, ownProps) => {
-  console.info('mapStateToProps.vehiclesForm', state)
+  console.info('VINManagerContainer.mapStateToProps', state)
+  const {
+    sheets,
+    labels,
+    sheetPositions,
+    metadata
+  } = state.printVINForm
+
   return {
-    vehiclesForm: state.printVINForm
+    sheets,
+    labels,
+    sheetPositions,
+    ...metadata,
   }
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    updateVehicle: (sheetIndex, labelIndex, vin) => {
-      dispatch(updateVehicleInForm(sheetIndex, labelIndex, vin))
+    updateVehicle: (sheetId, labelIndex, label) => {
+      dispatch(updateSheetLabel(sheetId, labelIndex, label))
     }
   }
 }

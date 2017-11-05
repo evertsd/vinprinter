@@ -1,46 +1,60 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import immutableUpdate from '../../../../lib/array'
 import VINInput from './components/VINInput'
 import VINList from './components/VINList'
+import { find, create } from '../../services/labelReducer'
 
 import './styles.css'
 
 const DEFAULT_LABEL_INDEX = 0
 
+const findOrCreateLabel = (state, labels, labelPositions, index) => {
+  return state.labels[index] ||
+    find(labels, labelPositions, index) ||
+    create()
+}
+
+const buildLabelState = (state, sheet, labels) => ([
+  findOrCreateLabel(state, labels, sheet.labelPositions, 0),
+  findOrCreateLabel(state, labels, sheet.labelPositions, 1),
+  findOrCreateLabel(state, labels, sheet.labelPositions, 2),
+  findOrCreateLabel(state, labels, sheet.labelPositions, 3),
+  findOrCreateLabel(state, labels, sheet.labelPositions, 4),
+  findOrCreateLabel(state, labels, sheet.labelPositions, 5),
+  findOrCreateLabel(state, labels, sheet.labelPositions, 6),
+  findOrCreateLabel(state, labels, sheet.labelPositions, 7),
+  findOrCreateLabel(state, labels, sheet.labelPositions, 8),
+  findOrCreateLabel(state, labels, sheet.labelPositions, 9),
+]);
+
+const buildState = (props, state) => {
+  const sheet = props.sheets[props.sheetPositions[props.currentSheet]]
+  const labels = buildLabelState(state, sheet, props.labels)
+  const labelIndex = state.labelIndex || DEFAULT_LABEL_INDEX
+
+  return {
+    sheet,
+    sheetIndex: props.currentSheet,
+    labels,
+    label: labels[labelIndex],
+    labelIndex,
+    sheetCount: props.sheets.length
+  }
+}
+
 class VINManager extends Component {
   componentWillMount() {
-    console.info('componentWillMount', this.props)
-    this.state = this._buildState(this.props.vehiclesForm, {})
+    this.state = buildState(this.props, {
+      labels: [],
+      labelIndex: DEFAULT_LABEL_INDEX
+    })
   }
 
   componentWillReceiveProps(nextProps) {
-    // if (!this._requiresStateUpdates(nextProps)) return
-    console.info('componentWillReceiveProps nextProps', nextProps)
-    this.setState(this._buildState(
-      nextProps.vehiclesForm, this.state
-    ))
-  }
-
-  _buildState(vehiclesForm, oldState) {
-    let sheet = vehiclesForm.sheets[vehiclesForm.currentSheetIndex]
-    let selectedLabelIndex = oldState.selectedLabelIndex || DEFAULT_LABEL_INDEX
-
-    return {
-      ...oldState,
-      sheet,
-      selectedLabelIndex,
-      selectedSheetIndex: vehiclesForm.currentSheetIndex,
-      selectedVehicle: sheet.labels[selectedLabelIndex],
-      numberOfSheets: vehiclesForm.sheets.length
-    }
-  }
-
-  selectLabel(labelIndex, selection) {
-    console.info('selectLabel', labelIndex, selection)
     this.setState({
       ...this.state,
-      selectedLabelIndex: labelIndex,
-      selectedVehicle: selection
+      ...buildState(nextProps, this.state)
     })
   }
 
@@ -49,14 +63,10 @@ class VINManager extends Component {
       <div className="vin-manager">
         <VINInput
           key="vin-input"
-          item={this.state.selectedVehicle}
-          index={this.state.selectedLabelIndex}
-          onInputChange={(index, vin) => {
-            this._updatePendingVIN(index, vin)
-          }}
-          onSubmit={(index, vin) => {
-            this._submitPendingVIN(index, vin)
-          }}
+          item={this.state.label}
+          index={this.state.labelIndex}
+          onInputChange={this._updatePendingVIN}
+          onSubmit={this._submitPendingVIN}
         />
         <section>
           <div className="row vin-list-header">
@@ -64,43 +74,49 @@ class VINManager extends Component {
               <span>
                 Current Sheet
                 <span className="pull-right">
-                  ({this.state.selectedSheetIndex + 1} / {this.state.numberOfSheets})
+                  ({this.state.sheetIndex + 1} / {this.state.sheetCount})
                 </span>
               </span>
             </div>
           </div>
-          <VINList labels={this.state.sheet.labels} selectLabel={(index, selection) => { this.selectLabel(index, selection) }} />
+          <VINList
+            sheet={this.state.sheet}
+            labels={this.state.labels}
+            labelIndex={this.state.labelIndex}
+            selectLabel={this.selectLabel} />
         </section>
       </div>
     )
   }
 
-  _updatePendingVIN(index, vin) {
-    let selected = {
-      ...this.state.selectedVehicle,
-      vin: vin
-    }
-
+  selectLabel = (labelIndex, selection) => {
     this.setState({
       ...this.state,
-      selectedVehicle: selected,
-      sheet: {
-        ...this.state.sheet,
-        labels: {
-          ...this.state.sheet.labels,
-          [index]: selected
-        }
-      }
+      label: selection,
+      labelIndex,
     })
   }
 
-  _submitPendingVIN(labelIndex, vin) {
-    this.props.updateVehicle(
-      this.state.selectedSheetIndex,
-      labelIndex,
-      vin
-    )
+  _updatePendingVIN = (index, vin) => {
+    this.setState({
+      ...this.state,
+      label: {
+        ...this.state.label,
+        vin: vin
+      },
+      labels: immutableUpdate(this.state.labels, index, {
+        vin: vin
+      })
+    });
   }
+
+  _submitPendingVIN = () => (
+    this.props.updateVehicle(
+      this.state.sheet.id,
+      this.state.labelIndex,
+      this.state.label
+    )
+  )
 
   _requiresStateUpdates(nextProps) {
     /*let labels = nextProps.vehiclesForm.sheets

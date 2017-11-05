@@ -2,14 +2,15 @@ import { connect } from 'react-redux'
 import VINSheetPreview from '../../components/VINForm/components/VINSheetPreview'
 
 const mapStateToProps = (state, ownProps) => {
-  let sheet = {}
+  const {
+    sheets, labels, sheetPositions
+  } = state.printVINForm
 
-  if (state.printVINForm) {
-    sheet = state.printVINForm.sheets[state.printVINForm.currentSheetIndex || 0]
-  }
+  const sheet = sheets[sheetPositions[state.printVINForm.metadata.currentSheet]]
 
   return {
-    sheet: sheet
+    sheet,
+    labels
   }
 }
 

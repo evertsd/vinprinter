@@ -3,16 +3,15 @@ import { DEFAULT_VEHICLES_FORM } from '../../components/VINForm/services/const'
 import VINSheetPrinter from '../../components/VINForm/components/VINSheetPrinter'
 
 const mapStateToProps = (state, ownProps) => {
-  let sheets = []
+  const {
+    sheets, sheetPositions, labels
+  } = state.printVINForm;
 
-  if (state.printVINForm && state.printVINForm.printRequest) {
-    sheets = state.printVINForm.printRequest.sheets
-  } else {
-    sheets = DEFAULT_VEHICLES_FORM.sheets
-  }
+  const orderedSheets = sheetPositions.map(sheetId => sheets[sheetId])
 
   return {
-    sheets: sheets
+    sheets: orderedSheets,
+    labels,
   }
 }
 

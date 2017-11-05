@@ -1,7 +1,5 @@
 export const DEFAULT_SHEET_LABLES = {
-  0: {}, 1: {}, 2: {},
-  3: {}, 4: {}, 5: {},
-  6: {}, 7: {}, 8: {}, 9: {}
+  labels: {}
 }
 
 export const DEFAULT_VEHICLES_FORM = {

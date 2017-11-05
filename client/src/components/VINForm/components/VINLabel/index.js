@@ -4,16 +4,33 @@ import VINDisplay from './components/VINDisplay'
 
 import './styles.css'
 
-class VINLabel extends Component {
-  render() {
-    let vin = this.props.vehicle ? this.props.vehicle.vin : ''
-    let vinLeft = `${vin}-left`
-    let vinRight = `${vin}-right`
+const LEFT = 'left'
+const RIGHT = 'right'
 
+class VINLabel extends Component {
+  componentWillMount() {
+    this.state = {
+      id: this.props.vehicle.id,
+      vin: this.props.vehicle.vin
+    };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      id: this.props.vehicle.id,
+      vin: nextProps.vehicle.vin
+    })
+  }
+
+  getDisplayKey = (side) => (
+    `vin-display-${side}-${this.state.id}`
+  )
+
+  render() {
     return (
       <div className="label-insert">
-        <VINDisplay key={vinLeft} vin={vin} side="left" />
-        <VINDisplay key={vinRight} vin={vin} side="right" />
+        <VINDisplay key={this.getDisplayKey(LEFT)} id={this.state.id} vin={this.state.vin} side={LEFT} />
+        <VINDisplay key={this.getDisplayKey(RIGHT)} id={this.state.id} vin={this.state.vin} side={RIGHT} />
       </div>
     )
   }
@@ -21,8 +38,11 @@ class VINLabel extends Component {
 
 VINLabel.PropTypes = {
   vehicle: PropTypes.shape({
+    id: PropTypes.string.isRequired,
     vin: PropTypes.number.isRequired
-  })
+  }),
+  preview: PropTypes.boolean,
+  labelIndex: PropTypes.number
 }
 
 export default VINLabel

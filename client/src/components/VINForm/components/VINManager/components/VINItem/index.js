@@ -15,7 +15,6 @@ class VINItem extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    // console.info('VINItem.componentWillReceiveProps', nextProps.item.vin)
     this.setState({
       ...this.state,
       item: nextProps.item,

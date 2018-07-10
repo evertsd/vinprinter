@@ -1,19 +1,19 @@
 import { connect } from 'react-redux'
 import {
   submitForm
-} from '../../services/actions'
-import VINFormHeader from '../../components/VINFormHeader'
+} from '../services/actions'
+import VINFormHeader from '../../FormHeader'
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    form: state.printVINForm
+    title: 'Enter VINs'
   }
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    submitForm: (form) => {
-      dispatch(submitForm(form))
+    onPrint: () => {
+      dispatch(submitForm())
     }
   }
 }

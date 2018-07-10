@@ -5,32 +5,17 @@ import VINSheet from '../VINSheet'
 import './styles.css'
 
 class VINSheetPreview extends Component {
-  componentWillMount() {
-    this.state = {
-      sheet: this.props.sheet
-    }
-  }
-
-  componentWillReceiveProps(nextProps) {
-    this.setState({
-      ...this.state,
-      sheet: nextProps.sheet,
-    })
-  }
-
   render() {
     return (
       <div className="sheet-preview">
-        <VINSheet sheet={this.state.sheet} />
+        <VINSheet sheetId={this.props.sheetId} preview={true} />
       </div>
     )
   }
 }
 
 VINSheetPreview.PropTypes = {
-  sheet: PropTypes.shape({
-    labels: PropTypes.shape
-  })
+  sheetId: PropTypes.string
 }
 
 export default VINSheetPreview

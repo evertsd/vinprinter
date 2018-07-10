@@ -1,50 +1,35 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import VINLabel from '../VINLabel'
-import Sheet from '../../../Avery/components/Sheet'
+import { StockTagLabel } from 'Labels';
+import BlankLabel from 'Avery/components/BlankLabel';
+import VINLabel from '../VINLabel';
+import SheetContainer from 'Avery/containers/SheetContainer.js';
 
-class VINSheet extends Component {
-  componentWillMount() {
-    this.state = {
-      sheet: this.props.sheet
+const labelTypeToComponent = labelType => {
+    switch (labelType) {
+        case 'StockTagLabel':
+            return StockTagLabel;
+        case 'VINLabel':
+            return VINLabel;
+        default:
+            return BlankLabel;
     }
-  }
+};
 
-  componentWillReceiveProps(nextProps) {
-    this.setState({
-      ...this.state,
-      sheet: nextProps.sheet,
-    })
-  }
-
+class VINSheet extends PureComponent {
   render() {
-    let labels = this._renderLabels(this.state.sheet.labels)
-
     return (
-      <Sheet labels={labels} preview={this.props.preview} />
+      <SheetContainer
+        key={`sheet-${this.props.sheetId}`}
+        sheetId={this.props.sheetId}
+        labelTypeToComponent={labelTypeToComponent}
+        preview={this.props.preview} />
     )
-  }
-
-  _renderLabels(labels) {
-    return [
-      <VINLabel vehicle={labels[0]} />,
-      <VINLabel vehicle={labels[1]} />,
-      <VINLabel vehicle={labels[2]} />,
-      <VINLabel vehicle={labels[3]} />,
-      <VINLabel vehicle={labels[4]} />,
-      <VINLabel vehicle={labels[5]} />,
-      <VINLabel vehicle={labels[6]} />,
-      <VINLabel vehicle={labels[7]} />,
-      <VINLabel vehicle={labels[8]} />,
-      <VINLabel vehicle={labels[9]} />
-    ]
   }
 }
 
 VINSheet.PropTypes = {
-  sheet: PropTypes.shape({
-    labels: PropTypes.shape
-  }),
+  sheetId: PropTypes.shape,
   preview: PropTypes.boolean
 }
 

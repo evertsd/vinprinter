@@ -6,7 +6,7 @@
 }
 
 #app {
-  margin-top: 80px;
+  margin-top: 40px;
 }
 
 @media print {
@@ -96,13 +96,13 @@
 }
 
 .btn-primary {
-  border-color: #2D96CD;
+  border-color: #6797DF;
   background: white;
   color: black;
 }
 
 .btn-primary:hover {
-  background: #2D96CD;
+  background: #6797DF;
   border-color: black;
   color: white;
 }

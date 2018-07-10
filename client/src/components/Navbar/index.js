@@ -1,14 +1,9 @@
-import React, { Component } from 'react'
-import { Navbar as ReactNavbar, NavbarBrand } from 'reactstrap'
+import React from 'react'
 
-class Navbar extends Component {
-  render() {
-    return (
-      <ReactNavbar className="no-print" color="faded" fixed="top">
-        <NavbarBrand href="index.html">Home</NavbarBrand>
-      </ReactNavbar>
-    )
-  }
-}
+const Navbar = () => (
+    <navbar className="no-print w-100 pa2 fw6">
+        <a href="index.html">Home</a>
+    </navbar>
+)
 
 export default Navbar

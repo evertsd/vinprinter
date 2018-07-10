@@ -1,5 +1,4 @@
 import { combineReducers } from 'redux'
-import { routerReducer } from 'react-router-redux'
 import vinFormReducer, {
   REDUCER_KEY as VIN_FORM_REDUCER_KEY,
   initialState as initialVINFormState
@@ -20,7 +19,6 @@ export const initialState = {
 }
 
 export default combineReducers({
-  routing: routerReducer,
   [AVERY_REDUCER_KEY]: averyReducer,
   [VIN_FORM_REDUCER_KEY]: vinFormReducer,
   [ST_FORM_REDUCER_KEY]: stFormReducer

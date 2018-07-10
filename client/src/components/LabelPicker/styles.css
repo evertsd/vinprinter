@@ -1,0 +1,21 @@
+.label-picker a {
+  cursor: pointer;
+  display: inline-block;
+  border-right: 1px solid #CDCDCD;
+  padding: 6px 12px;
+}
+
+.label-picker a.selected {
+  background: #DFF;
+}
+
+.label-picker a:last-of-type {
+  border-right: none;
+}
+
+.label-picker {
+  border: 1px solid #CDCDCD;
+  border-radius: 2px;
+
+  margin-bottom: 10px;
+}

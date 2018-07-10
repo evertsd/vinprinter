@@ -3,30 +3,30 @@ import PropTypes from 'prop-types'
 import immutableUpdate from '../../../../lib/array'
 import VINInput from './components/VINInput'
 import VINList from './components/VINList'
-import { find, create } from '../../services/labelReducer'
 
 import './styles.css'
 
 const DEFAULT_LABEL_INDEX = 0
 const LABELS_PER_SHEET = 10
 
-const findOrCreateLabel = (state, labels, labelPositions, index) => {
-  return state.labels[index] ||
-    find(labels, labelPositions, index) ||
-    create()
+const create = () => ({
+})
+
+const findOrCreateLabel = (labels, labelMap, index) => {
+  return labels[labelMap[index]] || create()
 }
 
-const buildLabelState = (state, sheet, labels) => ([
-  findOrCreateLabel(state, labels, sheet.labelPositions, 0),
-  findOrCreateLabel(state, labels, sheet.labelPositions, 1),
-  findOrCreateLabel(state, labels, sheet.labelPositions, 2),
-  findOrCreateLabel(state, labels, sheet.labelPositions, 3),
-  findOrCreateLabel(state, labels, sheet.labelPositions, 4),
-  findOrCreateLabel(state, labels, sheet.labelPositions, 5),
-  findOrCreateLabel(state, labels, sheet.labelPositions, 6),
-  findOrCreateLabel(state, labels, sheet.labelPositions, 7),
-  findOrCreateLabel(state, labels, sheet.labelPositions, 8),
-  findOrCreateLabel(state, labels, sheet.labelPositions, 9),
+const buildLabelState = (labels, labelMap) => ([
+  findOrCreateLabel(labels, labelMap, 1),
+  findOrCreateLabel(labels, labelMap, 2),
+  findOrCreateLabel(labels, labelMap, 3),
+  findOrCreateLabel(labels, labelMap, 4),
+  findOrCreateLabel(labels, labelMap, 5),
+  findOrCreateLabel(labels, labelMap, 6),
+  findOrCreateLabel(labels, labelMap, 7),
+  findOrCreateLabel(labels, labelMap, 8),
+  findOrCreateLabel(labels, labelMap, 9),
+  findOrCreateLabel(labels, labelMap, 10),
 ]);
 
 const initialState = {
@@ -36,8 +36,9 @@ const initialState = {
 }
 
 const buildState = (props, state) => {
-  const sheet = props.sheets[props.sheetPositions[props.currentSheet]]
-  const labels = buildLabelState(state, sheet, props.labels)
+  const sheet = props.sheets[props.currentSheet]
+  const labelMap = sheet && sheet.labels
+  const labels = buildLabelState(props.labels, labelMap || {})
   const labelIndex = state.labelIndex || DEFAULT_LABEL_INDEX
 
   return {
@@ -46,7 +47,7 @@ const buildState = (props, state) => {
     labels,
     label: labels[labelIndex],
     labelIndex,
-    sheetCount: props.sheetPositions.length
+    sheetCount: props.sheets.length
   }
 }
 
@@ -63,7 +64,6 @@ class VINManager extends Component {
   }
 
   render() {
-    console.info('VINManager.render', this.state)
     return (
       <div className="vin-manager">
         <VINInput
@@ -121,13 +121,15 @@ class VINManager extends Component {
     } = this.state
 
     const newLabelIndex = (labelIndex + 1) > LABELS_PER_SHEET ? DEFAULT_LABEL_INDEX : labelIndex + 1;
-    console.info('VINManager_submitPendingVIN, labelIndex, newLabelIndex', labelIndex, newLabelIndex)
     this.setState({
       ...this.state,
       labelIndex: newLabelIndex,
       label: this.state.labels[newLabelIndex]
     }, () => (
-      this.props.updateVehicle(sheet.id, labelIndex, label)
+      this.props.updateVehicle(sheet.id, labelIndex + 1, {
+        type: 'VINLabel',
+        ...label
+      })
     ));
   }
 

@@ -9,16 +9,17 @@ const RIGHT = 'right'
 
 class VINLabel extends Component {
   componentWillMount() {
+      console.info('VINLabel.props', this.props);
     this.state = {
-      id: this.props.vehicle.id,
-      vin: this.props.vehicle.vin
+      id: this.props.id,
+      vin: this.props.vin
     };
   }
 
   componentWillReceiveProps(nextProps) {
     this.setState({
-      id: this.props.vehicle.id,
-      vin: nextProps.vehicle.vin
+      id: nextProps.id,
+      vin: nextProps.vin
     })
   }
 
@@ -37,10 +38,8 @@ class VINLabel extends Component {
 }
 
 VINLabel.PropTypes = {
-  vehicle: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    vin: PropTypes.number.isRequired
-  }),
+  id: PropTypes.string.isRequired,
+  vin: PropTypes.number.isRequired,
   preview: PropTypes.boolean,
   labelIndex: PropTypes.number
 }

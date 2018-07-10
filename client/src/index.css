@@ -7,3 +7,11 @@ body {
 .pull-right {
   float: right;
 }
+
+.row-no-padding > [class*="col-"]:first-of-type {
+    padding-left: 0 !important;
+}
+
+.row-no-padding > [class*="col-"]:last-of-type {
+    padding-right: 0 !important;
+}

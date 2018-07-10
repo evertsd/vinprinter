@@ -1,24 +1,27 @@
-import { combineReducers } from 'redux'
 import {
   FORM_SUBMISSION_REQUEST,
   FORM_SUBMISSION_SUCCESS,
 } from './actions'
+import {
+  CREATE_SHEET,
+} from 'Avery/actions'
 
-import formLabelReducer, {
-  REDUCER_KEY as LABEL_REDUCER_KEY,
-  initialState as labelInitialState
-} from './labelReducer'
-import formSheetReducer from './sheetReducer'
-import formSheetPositionReducer from './sheetPositionReducer'
+export const REDUCER_KEY = 'printForm'
 
-const initialState = {
+export const initialState = {
   currentSheet: 0,
   submitting: false,
-  printRequest: {},
+  sheets: []
 }
 
-const formStateReducer = function(state = initialState, action) {
+const formReducer = function(state = initialState, action) {
   switch (action.type) {
+    case CREATE_SHEET:
+      return {
+        ...state,
+        sheets: [...state.sheets, action.id],
+        currentSheet: state.sheets.length || 0
+      }
     case FORM_SUBMISSION_REQUEST:
       return {
         ...state,
@@ -34,16 +37,4 @@ const formStateReducer = function(state = initialState, action) {
   }
 }
 
-export const initialFromState = {
-  [LABEL_REDUCER_KEY]: labelInitialState,
-  sheets: {},
-  sheetPositions: [],
-  metadata: initialState
-}
-
-export default combineReducers({
-  [LABEL_REDUCER_KEY]: formLabelReducer,
-  sheets: formSheetReducer,
-  sheetPositions: formSheetPositionReducer,
-  metadata: formStateReducer
-});
+export default formReducer

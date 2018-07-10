@@ -14,18 +14,14 @@ class VINSheetPrinter extends Component {
   }
 
   _renderSheets = sheets => (
-    sheets.map(sheet => (
-      <VINSheet key={`print-sheet-${sheet.id}`} sheet={sheet} labels={this.props.labels} preview={false} />
+    sheets.map(sheetId => (
+      <VINSheet key={`print-sheet-${sheetId}`} sheetId={sheetId} preview={false} />
     ))
   )
 }
 
 VINSheetPrinter.PropTypes = {
-  sheets: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number,
-    labelPositions: PropTypes.shape
-  })),
-  labels: PropTypes.shape
+  sheets: PropTypes.arrayOf(PropTypes.string)
 }
 
 export default VINSheetPrinter

@@ -26,7 +26,6 @@ class VINList extends Component {
   }
 
   _selectVINItem = labelIndex => {
-    console.info('_selectVINItem', labelIndex, this.props.labels[labelIndex])
     this.props.selectLabel(labelIndex, this.props.labels[labelIndex])
   }
 }

@@ -23,11 +23,6 @@ export function formSubmissionSuccess(form) {
 }
 
 export function submitForm(form) {
-  return function (dispatch) {
-    dispatch(formSubmissionRequest())
-    API.savePrintJob(form).then(data => {
-      dispatch(formSubmissionSuccess(data))
-      window.print()
-    })
-  }
+  window.print()
+  return formSubmissionRequest()
 }

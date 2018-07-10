@@ -8,17 +8,14 @@ class VINSheetPreview extends Component {
   render() {
     return (
       <div className="sheet-preview">
-        <VINSheet sheet={this.props.sheet} labels={this.props.labels} />
+        <VINSheet sheetId={this.props.sheetId} preview={true} />
       </div>
     )
   }
 }
 
 VINSheetPreview.PropTypes = {
-  sheet: PropTypes.shape({
-    labelPositions: PropTypes.shape
-  }),
-  labels: PropTypes.shape
+  sheetId: PropTypes.string
 }
 
 export default VINSheetPreview

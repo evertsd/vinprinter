@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux'
 import 'bootstrap/dist/css/bootstrap.css'
 import './index.css'
-import AppContainer from './containers/AppContainer'
+import AppContainer from './containers/AppContainer.js'
 import Navbar from './components/Navbar'
 import { render } from 'react-dom'
 import store from './store'
@@ -15,10 +15,11 @@ render(
   document.getElementById('root')
 );
 
-
+/*
 render(
   <Provider store={store}>
     <Navbar />
   </Provider>,
   document.getElementById('navbar')
 );
+*/

@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "classnames": "^2.2.5",
+    "vinprinter-ink": "file:../ink",
     "moment": "^2.22.2",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",

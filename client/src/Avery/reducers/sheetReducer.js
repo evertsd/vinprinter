@@ -1,4 +1,4 @@
-import { REHYDRATE } from 'redux-persist/constants'
+import { REHYDRATE } from 'redux-persist'
 import { CREATE_SHEET, SAVE_LABEL } from '../actions'
 import { hydrate } from './helpers'
 

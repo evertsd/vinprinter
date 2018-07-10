@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import uuidv4 from 'uuid/v4'
+import Navbar from './components/Navbar'
 import StockTagManagerContainer from './components/StockTagForm'
 import VINSheetPreviewContainer from './containers/VINSheetPreviewContainer'
 import VINSheetPrintContainer from './containers/VINSheetPrintContainer'
@@ -18,6 +19,7 @@ class App extends Component {
   render() {
     return (
       <div id="app">
+          <Navbar />
         <section>
           <div className="container">
             <VINFormHeaderContainer />

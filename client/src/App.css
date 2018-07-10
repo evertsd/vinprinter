@@ -5,10 +5,6 @@
   to { transform: rotate(360deg); }
 }
 
-#app {
-  margin-top: 40px;
-}
-
 @media print {
   #app {
     margin-top: 0;

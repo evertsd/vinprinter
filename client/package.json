@@ -1,22 +1,22 @@
 {
-  "name": "client",
+  "name": "vinprinter-client",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "classnames": "^2.2.5",
-    "vinprinter-ink": "file:../ink",
-    "moment": "^2.22.2",
-    "react": "^16.4.0",
-    "react-dom": "^16.4.0",
+    "classnames": "^2.2.6",
+    "debounce": "^1.1.0",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
     "react-redux": "^5.0.7",
     "react-scripts": "1.1.4",
-    "recompose": "^0.26.0",
-    "redux": "^3.7.2",
+    "recompose": "^0.27.1",
+    "redux": "^4.0.0",
+    "redux-actions": "^2.4.0",
     "redux-logger": "^3.0.6",
     "redux-persist": "^5.10.0",
     "redux-thunk": "^2.3.0",
     "reselect": "^3.0.1",
-    "uuid": "^3.1.0"
+    "vinprinter-ink": "file:../ink"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -25,7 +25,6 @@
     "eject": "react-scripts eject"
   },
   "devDependencies": {
-    "babel-jest": "^22.1.0",
-    "jest": "^22.1.4"
+    "tachyons": "^4.10.0"
   }
 }

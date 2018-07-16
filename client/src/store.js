@@ -1,10 +1,6 @@
-import { createStore, applyMiddleware, compose } from 'redux'
+import { createStore, applyMiddleware } from 'redux';
 import logger from 'redux-logger';
 
-import AppReducer, { initialState } from './reducer'
+import App, { initialState } from 'reducers';
 
-export default createStore(
-    AppReducer,
-    initialState,
-    applyMiddleware(logger),
-);
+export default createStore(App, initialState, applyMiddleware(logger));

@@ -1,14 +1,14 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux'
-import './index.css'
-import AppContainer from './containers/AppContainer.js'
-import { render } from 'react-dom'
-import store from './store'
+import { render } from 'react-dom';
+import { Provider } from 'react-redux';
+import App from './App';
+import './index.css';
+import registerServiceWorker from './registerServiceWorker';
+import store from './store';
 
 render(
     <Provider store={store}>
-        <AppContainer />
+        <App />
     </Provider>,
   document.getElementById('root')
 );

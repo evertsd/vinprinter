@@ -1,9 +1,0 @@
-li.vehicle-item > div:first-of-type span {
-  padding: 12px;
-}
-
-.vehicle-item-vin a:after
-{
-    content: '.';
-    visibility: hidden;
-}

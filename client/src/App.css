@@ -1,110 +1,28 @@
-@import url('https://fonts.googleapis.com/css?family=Lato');
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.App-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+
+.App-title {
+  font-size: 1.5em;
+}
+
+.App-intro {
+  font-size: large;
+}
 
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
-
-#app {
-  margin-top: 40px;
-}
-
-@media print {
-  #app {
-    margin-top: 0;
-  }
-
-  section {
-    margin-top: 0;
-  }
-}
-
-.row.bordered-row > [class*='col-']:before {
-   background: #CDCDCD;
-   bottom: 0;
-   content: " ";
-   left: 0;
-   position: absolute;
-   width: 1px;
-   top: 0;
-}
-
-.row.bordered-row > [class*='col-']:first-child:before {
-   display: none;
-}
-
-.fixed {
-  position: fixed;
-}
-
-.print {
-  display: none;
-}
-
-@media print {
-  .no-print {
-    display: none!important;
-  }
-  .print {
-    display: inline-block!important;
-  }
-}
-
-.page-header {
-  margin-bottom: 20px;
-}
-
-.page-header > div {
-  font-weight: 100;
-}
-
-.page-header > div:first-of-type {
-  border: 1px solid #CDCDCD;
-}
-
-.page-header > div h1,
-.page-header > div h2,
-.page-header > div button {
-  margin: 0;
-  font-weight: 100;
-  padding: 10px;
-
-  font-size: 1.8em;
-}
-
-.page-header > div button {
-  width: 100%;
-  padding: 4px 10px;
-  text-align: center;
-}
-
-.page-header {
-  padding-left: 0;
-}
-
-.clickable, .btn {
-  cursor: pointer;
-}
-
-.btn {
-  display: inline-block;
-
-  border: 2px solid;
-  border-radius: 3px;
-
-  line-height: inherit;
-}
-
-.btn-primary {
-  border-color: #6797DF;
-  background: white;
-  color: black;
-}
-
-.btn-primary:hover {
-  background: #6797DF;
-  border-color: black;
-  color: white;
-}
-
-* {box-sizing: border-box}

@@ -1,8 +1,0 @@
-.vin-input-wrapper input {
-  border: 0;
-  box-shadow: none;
-}
-
-.vin-input-row .vin-input-wrapper input:focus {
-  box-shadow: none;
-}

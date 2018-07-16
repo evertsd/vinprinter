@@ -1,7 +1,23 @@
 import { createSelector } from 'reselect';
-import { REDUCER_KEY, LABEL_REDUCER_KEY, SHEET_REDUCER_KEY } from './reducers';
+import { REDUCER_KEY, SHEET_LABEL_LOCATIONS } from './schema';
 
-export const sheetsSelector = state => state[REDUCER_KEY][SHEET_REDUCER_KEY];
-export const labelsSelector = state => state[REDUCER_KEY][LABEL_REDUCER_KEY];
-export const sheetsSelectorFactory = () =>
-    createSelector((_, { sheetIds }) => sheetIds, sheetsSelector, (sheetIds, sheets) => sheetIds.map(id => sheets[id]));
+export const selectSheets = state => state[REDUCER_KEY].sheets;
+export const selectSheet = createSelector(selectSheets, (_, id) => id, (sheets, id) => sheets[id]);
+export const selectLabels = state => state[REDUCER_KEY].labels;
+
+export const selectSession = (state, id) => {
+    const { sessions, currentSession } = state[REDUCER_KEY];
+    return sessions[id] || sessions[currentSession];
+};
+
+export const selectSheetLabels = createSelector(selectSheet, selectLabels, (sheet, labels) => {
+    return SHEET_LABEL_LOCATIONS.reduce((sheetLabels, location) => {
+        if (sheet && sheet.labels && sheet.labels[location]) {
+            sheetLabels[location] = labels[sheet.labels[location]];
+        } else {
+            sheetLabels[location] = {};
+        }
+
+        return sheetLabels;
+    }, {});
+});

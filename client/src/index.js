@@ -1,25 +1,14 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux'
-import 'bootstrap/dist/css/bootstrap.css'
-import './index.css'
-import AppContainer from './containers/AppContainer.js'
-import Navbar from './components/Navbar'
-import { render } from 'react-dom'
-import store from './store'
+import { render } from 'react-dom';
+import { Provider } from 'react-redux';
+import App from './App';
+import './index.css';
+import registerServiceWorker from './registerServiceWorker';
+import store from './store';
 
 render(
-  <Provider store={store}>
-    <AppContainer />
-  </Provider>,
+    <Provider store={store}>
+        <App />
+    </Provider>,
   document.getElementById('root')
 );
-
-/*
-render(
-  <Provider store={store}>
-    <Navbar />
-  </Provider>,
-  document.getElementById('navbar')
-);
-*/

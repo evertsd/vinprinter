@@ -21,3 +21,10 @@ export const selectSheetLabels = createSelector(selectSheet, selectLabels, (shee
         return sheetLabels;
     }, {});
 });
+
+export const selectSheetLabel = createSelector(
+    selectSheet,
+    selectLabels,
+    (_, __, labelLocation) => labelLocation,
+    (sheet, labels, location) => (sheet ? labels[sheet.labels[location]] : undefined)
+);

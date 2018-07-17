@@ -1,11 +1,21 @@
 import React from 'react';
-import { editAverySheet } from 'Avery';
+import { Colors } from 'vinprinter-ink';
+import { DefaultLabelPicker, editAverySession } from 'Avery';
 import Fields from './Fields';
 
-const StockTagForm = ({ label, labelLocation, selectLabel, submitLabel, updateLabel }) => (
-    <div className="vin-manager">
+const StockTagForm = ({ label, labelLocation, selectLabel, updateLabel }) => (
+    <div className="mh4">
+        <DefaultLabelPicker
+            selection={labelLocation}
+            selectLabel={selectLabel}
+            styles={{
+                container: { margin: '1rem 0 2rem' },
+                selectedOption: { backgroundColor: Colors.Blue.Periwinkle },
+            }}
+        />
+        <hr style={{ borderColor: Colors.Blue.Periwinkle }} />
         <Fields label={label} updateLabel={updateLabel} />
     </div>
 );
 
-export default editAverySheet(StockTagForm);
+export default editAverySession(StockTagForm);

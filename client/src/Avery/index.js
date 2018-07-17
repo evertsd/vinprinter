@@ -1,9 +1,6 @@
 export * from './actions';
+export * from './components';
 export * from './schema';
 export * from './selectors';
-export { default as BlankLabel } from './components/BlankLabel';
-export { default as Label } from './components/Label';
-export { default as LabelRow } from './components/LabelRow';
-export { default as Sheet } from './components/Sheet';
-export { connectSession as connectAverySession, requireSessionSheet as requireAverySessionSheet, editSheet as editAverySheet } from './hoc';
+export { connectSession as connectAverySession, requireSessionSheet as requireAverySessionSheet, editSession as editAverySession } from './hoc';
 export { default as averyReducer, initialState as initialAveryState } from './reducers';

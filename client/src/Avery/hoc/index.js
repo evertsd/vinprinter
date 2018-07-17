@@ -1,2 +1,2 @@
-export { editSheet } from './editSheet';
+export { editSession } from './editSession';
 export { connectSession, requireSessionSheet } from './requireSessionSheet';

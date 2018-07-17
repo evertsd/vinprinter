@@ -4,25 +4,25 @@ import { Labels, SheetPreview } from 'components';
 import PrintMediaQuery from 'hoc/PrintMediaQuery';
 import Form from './Form';
 
-const NonPrintView = ({ sheetId }) => (
+const NonPrintView = ({ session }) => (
     <div className="flex no-print pa3">
         <div>
-            <Form sheetId={sheetId} />
+            <Form session={session} />
         </div>
         <div style={{ flexGrow: 2 }}>
-            <SheetPreview sheetId={sheetId} LabelInsertComponent={Labels.StockTagLabel} />
+            <SheetPreview sheetId={session.currentSheet} LabelInsertComponent={Labels.StockTagLabel} />
         </div>
     </div>
 );
 
-const PrintView = ({ sheetId }) => <Sheet sheetId={sheetId} LabelInsertComponent={Labels.StockTagLabel} />;
+const PrintView = ({ session }) => <Sheet sheetId={session.currentSheet} LabelInsertComponent={Labels.StockTagLabel} />;
 
 const StockTagForm = PrintMediaQuery(NonPrintView, PrintView);
 
 const StockTagWrapper = requireAverySessionSheet(({ avery: { session } }) => {
-    const sheetId = session && session.sheets ? session.sheets[0] : undefined;
+    if (!session) return null;
 
-    return <StockTagForm sheetId={sheetId} />;
+    return <StockTagForm session={session} />;
 });
 
 export default StockTagWrapper;

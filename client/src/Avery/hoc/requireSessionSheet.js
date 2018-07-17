@@ -34,7 +34,12 @@ class CreateSessionAndSheet extends React.Component {
     shouldComponentUpdate({ session = { sheets: [] } }) {
         const oldSession = this.props.session || { sheets: [] };
 
-        return oldSession.id !== session.id || oldSession.sheets.length !== session.sheets.length;
+        return (
+            oldSession.id !== session.id ||
+            oldSession.sheets.length !== session.sheets.length ||
+            oldSession.currentLabel !== session.currentLabel ||
+            oldSession.currentSheet !== session.currentSheet
+        );
     }
 
     render() {

@@ -43,12 +43,11 @@ const Input = ({ type = 'text', ...props }) => (
     <input {...props} type={type} className="ba pa2 w-100" style={{ borderColor: Colors.Gray.Default, borderRadius: '2px' }} />
 );
 
-const Form = ({ label, values, onUpdate }) => {
+const Form = ({ values, onUpdate }) => {
     const onUpdateField = field => e => onUpdate(field, e.target.value);
 
     return (
-        <div className="mv2">
-            {label.id && <input type="hidden" value={values.id} defaultValue={label.id} />}
+        <div className="pb2">
             <div className="flex">
                 <div className="w-50 mr2">
                     <Label>Color</Label>

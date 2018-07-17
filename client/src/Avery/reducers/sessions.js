@@ -1,5 +1,6 @@
 import { handleActions } from 'redux-actions';
-import { createSession, createSheet } from '../actions';
+import { createSession, createSheet, selectLabel } from '../actions';
+import { SHEET_LABEL_LOCATIONS } from '../schema';
 
 export const initialState = {};
 
@@ -12,6 +13,9 @@ export default handleActions(
                 ...state,
                 [sessionId]: {
                     ...session,
+                    currentLabel: SHEET_LABEL_LOCATIONS[0],
+                    currentSheet: id,
+                    currentSheetIndex: session.sheets.length,
                     sheets: [...session.sheets, id],
                 },
             };
@@ -19,6 +23,13 @@ export default handleActions(
         [createSession]: (state, { payload: { id } }) => ({
             ...state,
             [id]: { id, sheets: [] },
+        }),
+        [selectLabel]: (state, { payload: { labelLocation, sessionId } }) => ({
+            ...state,
+            [sessionId]: {
+                ...state[sessionId],
+                currentLabel: labelLocation,
+            },
         }),
     },
     initialState

@@ -1,46 +1,37 @@
 import React from 'react';
 import debounce from 'debounce';
-import { compose, withStateHandlers } from 'recompose';
+import { compose, shouldUpdate, withStateHandlers } from 'recompose';
 import { Colors } from 'vinprinter-ink';
-
-const initializeValues = label => ({
-    color: label.color || '',
-    miles: label.miles || '',
-    receivedFrom: label.receivedFrom || '',
-    receivedOn: label.receivedOn || '',
-    keyCode: label.keyCode || '',
-    keylessCode: label.keylessCode || '',
-    stockNumber: label.stockNumber || '',
-    make: label.make || '',
-    model: label.model || '',
-    year: label.year || '',
-});
 
 const DebouncedUpdates = WrappedComponent => {
     return ({ updateLabel, ...props }) => <WrappedComponent {...props} updateLabel={debounce(updateLabel, 200)} />;
 };
 
-const labelFormHandlers = withStateHandlers(
-    ({ label = {} }) => ({
-        values: initializeValues(label),
-    }),
-    {
-        onUpdate: (state, { updateLabel }) => (key, value) => {
-            const values = {
-                ...state.values,
-                [key]: value,
-            };
+const labelFormHandlers = withStateHandlers(({ label = {} }) => ({ values: label }), {
+    onReset: (_, { label = {} }) => () => ({ values: label }),
+    onUpdate: (state, { updateLabel }) => (key, value) => {
+        const values = {
+            ...state.values,
+            [key]: value,
+        };
 
-            updateLabel(values);
+        updateLabel(values);
 
-            return { values };
-        },
+        return { values };
+    },
+});
+
+const updateOnLabelLocationChange = shouldUpdate((props, nextProps) => {
+    if (props.labelLocation !== nextProps.labelLocation) {
+        props.onReset();
     }
-);
+
+    return true;
+});
 
 const Label = ({ children }) => <label className="db mt3 mb1">{children}</label>;
-const Input = ({ type = 'text', ...props }) => (
-    <input {...props} type={type} className="ba pa2 w-100" style={{ borderColor: Colors.Gray.Default, borderRadius: '2px' }} />
+const Input = ({ type = 'text', value = '', ...props }) => (
+    <input {...props} className="ba pa2 w-100" type={type} value={value} style={{ borderColor: Colors.Gray.Default, borderRadius: '2px' }} />
 );
 
 const Form = ({ values, onUpdate }) => {
@@ -104,5 +95,6 @@ const Form = ({ values, onUpdate }) => {
 
 export default compose(
     DebouncedUpdates,
-    labelFormHandlers
+    labelFormHandlers,
+    updateOnLabelLocationChange
 )(Form);

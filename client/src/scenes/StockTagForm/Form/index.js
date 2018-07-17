@@ -14,7 +14,7 @@ const StockTagForm = ({ label, labelLocation, selectLabel, updateLabel }) => (
             }}
         />
         <hr style={{ borderColor: Colors.Blue.Periwinkle }} />
-        <Fields label={label} updateLabel={updateLabel} />
+        <Fields label={label} labelLocation={labelLocation} updateLabel={updateLabel} />
     </div>
 );
 

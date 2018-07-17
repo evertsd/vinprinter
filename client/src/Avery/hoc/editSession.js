@@ -32,7 +32,7 @@ const connectSession = connect(
     {
         areOwnPropsEqual: (nextProps, { session }) => {
             const nextSession = nextProps.session;
-            console.info('areOwnPropsEqual, session, nextSession', session, nextSession);
+
             return session.currentLabel === nextSession.currentLabel && session.currentSheet === nextSession.currentSheet;
         },
     }

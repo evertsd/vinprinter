@@ -47,7 +47,7 @@ const StockTagLabel = ({ stockNumber, make, model, vin, color, miles, receivedFr
             <Col className="w-40">
                 <Label>Color</Label> {color}
             </Col>
-            <Col className="w-60">
+            <Col className="tr w-60">
                 <Label>Miles</Label> {toNumber(miles)}
             </Col>
         </Row>
@@ -55,7 +55,7 @@ const StockTagLabel = ({ stockNumber, make, model, vin, color, miles, receivedFr
             <Col className="w-40">
                 <Label>Key</Label> {keyCode}
             </Col>
-            <Col className="w-60">
+            <Col className="tr w-60">
                 <Label>Keyless</Label> {keylessCode}
             </Col>
         </Row>

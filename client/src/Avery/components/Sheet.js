@@ -11,7 +11,10 @@ const connectSheetLabels = (state, { sheetId }) => ({
     labels: selectSheetLabels(state, sheetId),
 });
 
-const getEvenIndices = array => Object.keys(array).filter(i => i % 2 === 0);
+const getEvenIndices = array =>
+    Object.keys(array)
+        .map(Number)
+        .filter(i => i % 2 === 0);
 
 const Sheet = ({ className, style, labels, LabelInsertComponent = BlankLabel }) => (
     <div className={classNames('dib', className)} style={{ fontSize: '0.514in', padding: '0.7em 0', ...style }}>

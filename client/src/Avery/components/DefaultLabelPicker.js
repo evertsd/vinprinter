@@ -2,7 +2,7 @@ import React from 'react';
 import { SHEET_LABEL_LOCATIONS } from '../schema';
 
 const LabelPickerOption = ({ option, onClick, style }) => (
-    <a onClick={() => onClick(option)} className="bl bt bb pa2 tc w-10" style={style}>
+    <a onClick={() => onClick(option)} className="bl bt bb pv2 tc w-10" style={style}>
         {option}
     </a>
 );

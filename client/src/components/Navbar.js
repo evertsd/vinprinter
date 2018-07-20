@@ -1,8 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Colors } from 'vinprinter-ink';
-import { createSession } from 'Avery';
-import PrintMediaQuery from 'hoc/PrintMediaQuery';
+import { createSession, PrintMediaQuery } from 'Avery';
 
 const connectSessionCreator = connect(
     () => ({}),

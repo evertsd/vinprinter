@@ -1,7 +1,6 @@
 import React from 'react';
-import { requireAverySessionSheet, Sheet } from 'Avery';
+import { requireAverySessionSheet, PrintMediaQuery, Sheet } from 'Avery';
 import { Labels, SheetPreview } from 'components';
-import PrintMediaQuery from 'hoc/PrintMediaQuery';
 import Form from './Form';
 
 const NonPrintView = ({ session }) => (

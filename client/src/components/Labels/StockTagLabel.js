@@ -44,10 +44,10 @@ const StockTagLabel = ({ stockNumber, make, model, vin, color, miles, receivedFr
             </Col>
         </Row>
         <Row style={{ lineHeight: '1.20em', fontSize: '0.40em' }}>
-            <Col className="w-40">
+            <Col className="w-50">
                 <Label>Color</Label> {color}
             </Col>
-            <Col className="tr w-60">
+            <Col className="tr w-50">
                 <Label>Miles</Label>
                 {'\xa0'.repeat(miles && miles < 100000 ? 2 : 1)}
                 {toNumber(miles)}

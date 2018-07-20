@@ -8,11 +8,12 @@ class PrintMediaQuery extends React.Component {
 
     updateMatches = () => {
         this.setState({ matches: this.mediaQueryList.matches });
-    }
+    };
 
     componentDidMount() {
         if (typeof window !== 'object') return;
 
+        /* eslint-disable no-undef */
         const targetWindow = this.props.targetWindow || window;
 
         if (typeof targetWindow.matchMedia !== 'function') return;

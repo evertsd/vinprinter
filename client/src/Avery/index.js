@@ -7,5 +7,6 @@ export {
     editSession as editAverySession,
     requireSessionSheet as requireAverySessionSheet,
     updateLabel as updateAveryLabel,
+    PrintMediaQuery,
 } from './hoc';
 export { default as averyReducer, initialState as initialAveryState } from './reducers';

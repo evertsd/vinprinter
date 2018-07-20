@@ -5,11 +5,11 @@ import PrintMediaQuery from 'hoc/PrintMediaQuery';
 import Form from './Form';
 
 const NonPrintView = ({ session }) => (
-    <div className="flex no-print pa3">
-        <div>
+    <div className="flex justify-center pa3">
+        <div className="w-33">
             <Form session={session} />
         </div>
-        <div style={{ flexGrow: 2 }}>
+        <div className="">
             <SheetPreview sheetId={session.currentSheet} LabelInsertComponent={Labels.StockTagLabel} />
         </div>
     </div>

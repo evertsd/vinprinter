@@ -7,9 +7,8 @@ const SheetPreview = ({ sheetId, LabelInsertComponent }) => (
             LabelInsertComponent={LabelInsertComponent}
             preview={true}
             sheetId={sheetId}
-            className="ba"
+            className="ba mv3"
             style={{
-                margin: '20px',
                 marginRight: 0,
                 fontSize: '0.3125in',
                 borderColor: '#CDCDCD',

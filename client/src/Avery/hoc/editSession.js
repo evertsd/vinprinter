@@ -16,11 +16,10 @@ const connectSession = connect(
         label,
         labelLocation,
         selectLabel: labelLocation => selectLabel({ labelLocation, sessionId }),
-        submitLabel: values => {
-            const updates = label && label.id ? { id: label.id, ...values } : values;
+        submitLabel: () => {
             const nextLabelLocation = findNextLabelLocation(labelLocation);
 
-            saveLabel({ sheetId, labelLocation, label: updates });
+            saveLabel({ sheetId, labelLocation, label });
             selectLabel({ labelLocation: nextLabelLocation, sessionId });
         },
         updateLabel: values => {

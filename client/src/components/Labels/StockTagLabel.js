@@ -48,7 +48,9 @@ const StockTagLabel = ({ stockNumber, make, model, vin, color, miles, receivedFr
                 <Label>Color</Label> {color}
             </Col>
             <Col className="tr w-60">
-                <Label>Miles</Label> {toNumber(miles)}
+                <Label>Miles</Label>
+                {'\xa0'.repeat(miles && miles < 100000 ? 2 : 1)}
+                {toNumber(miles)}
             </Col>
         </Row>
         <Row style={{ lineHeight: '1.20em', fontSize: '0.40em' }}>
@@ -56,14 +58,16 @@ const StockTagLabel = ({ stockNumber, make, model, vin, color, miles, receivedFr
                 <Label>Key</Label> {keyCode}
             </Col>
             <Col className="tr w-60">
-                <Label>Keyless</Label> {keylessCode}
+                <Label>Keyless</Label> {keylessCode || '\xa0'.repeat(12)}
             </Col>
         </Row>
         <Row style={{ lineHeight: '1.20em', fontSize: '0.40em' }}>
             <Col className="w-60">
                 <Label>From</Label> {receivedFrom}
             </Col>
-            <Col className="w-40 tr">{receivedOn}</Col>
+            <Col className="w-40 tr">
+                <Label>On</Label> {receivedOn}
+            </Col>
         </Row>
     </div>
 );

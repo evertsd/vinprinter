@@ -1,33 +1,12 @@
 import React from 'react';
 import debounce from 'debounce';
-import { compose, shouldUpdate, withStateHandlers } from 'recompose';
+import { updateAveryLabel } from 'Avery';
+import { compose } from 'recompose';
 import { Colors } from 'vinprinter-ink';
 
 const DebouncedUpdates = WrappedComponent => {
     return ({ updateLabel, ...props }) => <WrappedComponent {...props} updateLabel={debounce(updateLabel, 200)} />;
 };
-
-const labelFormHandlers = withStateHandlers(({ label = {} }) => ({ values: label }), {
-    onReset: (_, { label = {} }) => () => ({ values: label }),
-    onUpdate: (state, { updateLabel }) => (key, value) => {
-        const values = {
-            ...state.values,
-            [key]: value,
-        };
-
-        updateLabel(values);
-
-        return { values };
-    },
-});
-
-const updateOnLabelLocationChange = shouldUpdate((props, nextProps) => {
-    if (props.labelLocation !== nextProps.labelLocation) {
-        props.onReset();
-    }
-
-    return true;
-});
 
 const Label = ({ children }) => <label className="db mt3 mb1">{children}</label>;
 const Input = ({ type = 'text', value = '', ...props }) => (
@@ -35,16 +14,16 @@ const Input = ({ type = 'text', value = '', ...props }) => (
 );
 
 const Form = ({ values, onUpdate }) => {
-    const onUpdateField = field => e => onUpdate(field, e.target.value);
+    const onUpdateField = field => e => onUpdate(field, e.target.value || '');
 
     return (
         <div className="pb2">
             <div className="flex">
                 <div className="w-50 mr2">
                     <Label>Color</Label>
-                    <Input type="text" value={values.color} onChange={onUpdateField('color')} />
+                    <Input autoFocus={true} type="text" value={values.color} onChange={onUpdateField('color')} />
                 </div>
-                <div className="w-50">
+                <div className="w-50 ml2">
                     <Label>Mileage</Label>
                     <Input type="text" value={values.miles} onChange={onUpdateField('miles')} />
                 </div>
@@ -54,7 +33,7 @@ const Form = ({ values, onUpdate }) => {
                     <Label>Received from</Label>
                     <Input type="text" value={values.receivedFrom} onChange={onUpdateField('receivedFrom')} />
                 </div>
-                <div className="w-50">
+                <div className="w-50 ml2">
                     <Label>Received on</Label>
                     <Input type="text" value={values.receivedOn} onChange={onUpdateField('receivedOn')} />
                 </div>
@@ -64,7 +43,7 @@ const Form = ({ values, onUpdate }) => {
                     <Label>Key code</Label>
                     <Input type="text" value={values.keyCode} onChange={onUpdateField('keyCode')} />
                 </div>
-                <div className="w-50">
+                <div className="w-50 ml2">
                     <Label>Keyless code</Label>
                     <Input type="text" value={values.keylessCode} onChange={onUpdateField('keylessCode')} />
                 </div>
@@ -89,12 +68,17 @@ const Form = ({ values, onUpdate }) => {
                     <Input type="text" value={values.year} onChange={onUpdateField('year')} />
                 </div>
             </div>
+            <div className="flex">
+                <div className="w-100">
+                    <Label>VIN</Label>
+                    <Input type="text" value={values.vin} onChange={onUpdateField('vin')} />
+                </div>
+            </div>
         </div>
     );
 };
 
 export default compose(
     DebouncedUpdates,
-    labelFormHandlers,
-    updateOnLabelLocationChange
+    updateAveryLabel
 )(Form);

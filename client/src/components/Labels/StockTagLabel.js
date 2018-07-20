@@ -14,7 +14,7 @@ const Col = ({ children, className, style }) => (
     </div>
 );
 
-const Label = ({ children, className }) => <label className={classNames('dib fw6 mb0', className)}>{children}</label>;
+const Label = ({ children, className }) => <label className={classNames('fw6 dib mb0', className)}>{children}</label>;
 
 const RequireStockTagValue = WrappedComponent => {
     const keys = ['color', 'make', 'miles', 'model', 'receivedFrom', 'receivedOn', 'stockNumber', 'vin', 'year'];
@@ -27,7 +27,7 @@ const RequireStockTagValue = WrappedComponent => {
 };
 
 const StockTagLabel = ({ stockNumber, make, model, vin, color, miles, receivedFrom, receivedOn, year, keyCode, keylessCode }) => (
-    <div style={{ padding: '0.30em 0.40em' }}>
+    <div style={{ padding: '0.30em 0.40em', fontFamily: 'sans-serif' }}>
         <Row style={{ fontSize: '0.65em' }}>
             <Col className="w-100">
                 <Label>Stock #</Label> {stockNumber}

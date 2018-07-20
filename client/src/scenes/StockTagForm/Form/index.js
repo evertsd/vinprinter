@@ -15,7 +15,7 @@ const getLabelInputSetting = (label = {}) => (label.batchInput && label.batchInp
 const withInputSettings = withState('inputSetting', 'setInputSettings', ({ label }) => getLabelInputSetting(label));
 
 const StockTagForm = ({ inputSetting, label, labelLocation, selectLabel, setInputSettings, submitLabel, updateLabel }) => (
-    <div className="mh4">
+    <div>
         <DefaultLabelPicker
             selection={labelLocation}
             selectLabel={selectLabel}

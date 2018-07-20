@@ -20,18 +20,8 @@ const Form = ({ values, onUpdate }) => {
         <div className="pb2">
             <div className="flex">
                 <div className="w-50 mr2">
-                    <Label>Color</Label>
-                    <Input autoFocus={true} type="text" value={values.color} onChange={onUpdateField('color')} />
-                </div>
-                <div className="w-50 ml2">
-                    <Label>Mileage</Label>
-                    <Input type="text" value={values.miles} onChange={onUpdateField('miles')} />
-                </div>
-            </div>
-            <div className="flex">
-                <div className="w-50 mr2">
                     <Label>Received from</Label>
-                    <Input type="text" value={values.receivedFrom} onChange={onUpdateField('receivedFrom')} />
+                    <Input autoFocus={true} type="text" value={values.receivedFrom} onChange={onUpdateField('receivedFrom')} />
                 </div>
                 <div className="w-50 ml2">
                     <Label>Received on</Label>
@@ -72,6 +62,16 @@ const Form = ({ values, onUpdate }) => {
                 <div className="w-100">
                     <Label>VIN</Label>
                     <Input type="text" value={values.vin} onChange={onUpdateField('vin')} />
+                </div>
+            </div>
+            <div className="flex">
+                <div className="w-50 mr2">
+                    <Label>Color</Label>
+                    <Input type="text" value={values.color} onChange={onUpdateField('color')} />
+                </div>
+                <div className="w-50 ml2">
+                    <Label>Mileage</Label>
+                    <Input type="text" value={values.miles} onChange={onUpdateField('miles')} />
                 </div>
             </div>
         </div>

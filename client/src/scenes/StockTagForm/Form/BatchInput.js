@@ -15,6 +15,8 @@ const parseInput = currentState => {
         make: data[5] || currentState.make,
         model: data[7] || currentState.model,
         vin: data[9] || currentState.vin,
+        color: data[11] || currentState.color,
+        miles: data[13] || currentState.miles,
     };
 };
 

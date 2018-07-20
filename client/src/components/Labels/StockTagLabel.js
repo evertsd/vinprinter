@@ -34,8 +34,8 @@ const StockTagLabel = ({ stockNumber, make, model, vin, color, miles, receivedFr
             </Col>
         </Row>
         <Row style={{ fontSize: '0.55em' }}>
-            <Col className="w-40">{make}</Col>
-            <Col className="w-50">{model}</Col>
+            <Col className="w-30">{make}</Col>
+            <Col className="w-60">{model}</Col>
             <Col className="w-10 tr">{year}</Col>
         </Row>
         <Row style={{ fontSize: '0.50em' }}>

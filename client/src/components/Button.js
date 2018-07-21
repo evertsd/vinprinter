@@ -10,8 +10,9 @@ export const BTN_KINDS = {
 };
 
 const styles = {
-    [BTN_KINDS.DEFAULT]: { color: Colors.Gray.Lighter, backgroundColor: Colors.Gray.Dark },
-    [BTN_KINDS.PRIMARY]: { color: Colors.Gray.Lighter, backgroundColor: Colors.Green.Viridian },
+    [BTN_KINDS.DEFAULT]: { color: Colors.Gray.White, backgroundColor: Colors.Gray.Dark },
+    [BTN_KINDS.DANGER]: { color: Colors.Gray.White, backgroundColor: Colors.Red.Wood },
+    [BTN_KINDS.PRIMARY]: { color: Colors.Gray.White, backgroundColor: Colors.Green.Viridian },
 };
 
 const Button = ({ className, style, kind = BTN_KINDS.DEFAULT, ...props }) => (

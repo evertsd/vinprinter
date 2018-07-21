@@ -4,8 +4,8 @@
   "private": true,
   "homepage": "https://evertsd.github.io/vinprinter",
   "dependencies": {
+    "@hocs/debounce-handler": "^0.4.0",
     "classnames": "^2.2.6",
-    "debounce": "^1.1.0",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-redux": "^5.0.7",

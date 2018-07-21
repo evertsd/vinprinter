@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { saveLabel, selectLabel } from '../actions';
+import { clearLabel, saveLabel, selectLabel } from '../actions';
 import { SHEET_LABEL_LOCATIONS } from '../schema';
 import { selectSheetLabel } from '../selectors';
 
@@ -10,11 +10,12 @@ const connectSession = connect(
         label: selectSheetLabel(state, currentSheet, currentLabel),
         labelLocation: currentLabel,
     }),
-    { saveLabel, selectLabel },
-    ({ label, labelLocation, sessionId, sheetId }, { selectLabel, saveLabel }, props) => ({
+    { clearLabel, saveLabel, selectLabel },
+    ({ label, labelLocation, sessionId, sheetId }, { clearLabel, selectLabel, saveLabel }, props) => ({
         ...props,
         label,
         labelLocation,
+        clearLabel: () => clearLabel({ id: label && label.id }),
         selectLabel: labelLocation => selectLabel({ labelLocation, sessionId }),
         submitLabel: () => {
             const nextLabelLocation = findNextLabelLocation(labelLocation);

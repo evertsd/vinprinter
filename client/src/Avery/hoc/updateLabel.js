@@ -1,6 +1,11 @@
 import { compose, lifecycle, withStateHandlers } from 'recompose';
 
 const labelFormHandlers = withStateHandlers(({ label = {} }) => ({ values: label }), {
+    onClear: (_, { clearLabel, label = {} }) => () => {
+        clearLabel({ id: label.id });
+
+        return { values: {} };
+    },
     onReset: (_, { label = {} }) => () => ({ values: label }),
     onChangeValue: state => (key, value) => {
         const values = { ...state.values, [key]: value };

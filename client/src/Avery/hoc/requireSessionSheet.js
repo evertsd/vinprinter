@@ -36,7 +36,7 @@ class CreateSessionAndSheet extends React.Component {
 
         return (
             oldSession.id !== session.id ||
-            oldSession.sheets.length !== session.sheets.length ||
+            (oldSession.sheets && oldSession.sheets.length) !== (session.sheets && session.sheets.length) ||
             oldSession.currentLabel !== session.currentLabel ||
             oldSession.currentSheet !== session.currentSheet
         );

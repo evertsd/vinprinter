@@ -1,12 +1,13 @@
 import React from 'react';
 import { Sheet } from 'Avery';
 
-const SheetPreview = ({ sheetId, LabelInsertComponent }) => (
+const SheetPreview = ({ session, sheetId, LabelInsertComponent }) => (
     <div className="fr" style={{ marginLeft: '40px' }}>
         <Sheet
             LabelInsertComponent={LabelInsertComponent}
             preview={true}
             sheetId={sheetId}
+            session={session}
             className="ba mv3"
             style={{
                 marginRight: 0,

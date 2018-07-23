@@ -9,12 +9,12 @@ const NonPrintView = ({ session }) => (
             <Form session={session} />
         </div>
         <div className="">
-            <SheetPreview sheetId={session.currentSheet} LabelInsertComponent={Labels.StockTagLabel} />
+            <SheetPreview session={session} sheetId={session.currentSheet} LabelInsertComponent={Labels.StockTagLabel} />
         </div>
     </div>
 );
 
-const PrintView = ({ session }) => <Sheet sheetId={session.currentSheet} LabelInsertComponent={Labels.StockTagLabel} />;
+const PrintView = ({ session }) => <Sheet session={session} sheetId={session.currentSheet} LabelInsertComponent={Labels.StockTagLabel} />;
 
 const StockTagForm = PrintMediaQuery(NonPrintView, PrintView);
 

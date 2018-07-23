@@ -28,22 +28,22 @@ const RequireStockTagValue = WrappedComponent => {
 
 const StockTagLabel = ({ stockNumber, make, model, vin, color, miles, receivedFrom, receivedOn, year, keyCode, keylessCode }) => (
     <div style={{ padding: '0.30em 0.40em', fontFamily: 'sans-serif' }}>
-        <Row style={{ fontSize: '0.65em' }}>
+        <Row style={{ fontSize: '0.65em', padding: '0 0 0.12em' }}>
             <Col className="w-100">
                 <Label>Stock #</Label> {stockNumber}
             </Col>
         </Row>
-        <Row style={{ fontSize: '0.55em' }}>
+        <Row style={{ fontSize: '0.55em', padding: '0.12em 0' }}>
             <Col className="w-30">{make}</Col>
             <Col className="w-60">{model}</Col>
             <Col className="w-10 tr">{year}</Col>
         </Row>
-        <Row style={{ fontSize: '0.50em' }}>
+        <Row style={{ fontSize: '0.50em', padding: '0.12em 0' }}>
             <Col className="w-100">
                 <Label>VIN</Label> {vin}
             </Col>
         </Row>
-        <Row style={{ lineHeight: '1.20em', fontSize: '0.40em' }}>
+        <Row style={{ lineHeight: '1.20em', fontSize: '0.40em', padding: '0.12em 0' }}>
             <Col className="w-50">
                 <Label>Color</Label> {color}
             </Col>
@@ -53,15 +53,7 @@ const StockTagLabel = ({ stockNumber, make, model, vin, color, miles, receivedFr
                 {toNumber(miles)}
             </Col>
         </Row>
-        <Row style={{ lineHeight: '1.20em', fontSize: '0.40em' }}>
-            <Col className="w-40">
-                <Label>Key</Label> {keyCode}
-            </Col>
-            <Col className="tr w-60">
-                <Label>Keyless</Label> {keylessCode || '\xa0'.repeat(12)}
-            </Col>
-        </Row>
-        <Row style={{ lineHeight: '1.20em', fontSize: '0.40em' }}>
+        <Row style={{ lineHeight: '1.20em', fontSize: '0.40em', padding: '0.12em 0 0' }}>
             <Col className="w-60">
                 <Label>From</Label> {receivedFrom}
             </Col>

@@ -8,6 +8,7 @@ export default handleActions(
     {
         [createSheet]: (state, { payload: { id, sessionId } }) => {
             const session = state[sessionId];
+            const sheets = session.sheets || [];
 
             return {
                 ...state,
@@ -15,8 +16,8 @@ export default handleActions(
                     ...session,
                     currentLabel: SHEET_LABEL_LOCATIONS[0],
                     currentSheet: id,
-                    currentSheetIndex: session.sheets.length,
-                    sheets: [...session.sheets, id],
+                    currentSheetIndex: sheets.length,
+                    sheets: [...sheets, id],
                 },
             };
         },
@@ -24,10 +25,11 @@ export default handleActions(
             ...state,
             [id]: { id, sheets: [] },
         }),
-        [selectLabel]: (state, { payload: { labelLocation, sessionId } }) => ({
+        [selectLabel]: (state, { payload: { labelLocation, sheetId, sessionId } }) => ({
             ...state,
             [sessionId]: {
                 ...state[sessionId],
+                currentSheet: sheetId,
                 currentLabel: labelLocation,
             },
         }),

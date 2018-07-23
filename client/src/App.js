@@ -6,6 +6,8 @@ import Navbar from 'components/Navbar';
 import ResetRedux from 'components/ResetRedux';
 import StockTagForm from 'scenes/StockTagForm';
 
+const BASE_ROUTE = '/vinprinter';
+
 const StockTagComponent = () => (
     <div id="app">
         <Navbar />
@@ -16,10 +18,10 @@ const StockTagComponent = () => (
 const App = ({ persistor }) => (
     <BrowserRouter>
         <Switch>
-            <Route path="/" exact={true} component={StockTagComponent} />
-            <Route path="/reset" render={props => <ResetRedux {...props} persistor={persistor} />} />
+            <Route path={BASE_ROUTE} exact={true} component={StockTagComponent} />
+            <Route path={`${BASE_ROUTE}/reset`} render={props => <ResetRedux {...props} persistor={persistor} />} />
 
-            <Route render={() => <Redirect to="/" />} />
+            <Route render={() => <Redirect to={BASE_ROUTE} />} />
         </Switch>
     </BrowserRouter>
 );

@@ -26,7 +26,7 @@ const RequireStockTagValue = WrappedComponent => {
     };
 };
 
-const StockTagLabel = ({ stockNumber, make, model, vin, color, miles, receivedFrom, receivedOn, year, keyCode, keylessCode }) => (
+const StockTagLabel = ({ stockNumber, make, model, vin, color, miles, receivedFrom, receivedOn, year }) => (
     <div style={{ padding: '0.30em 0.40em', fontFamily: 'sans-serif' }}>
         <Row style={{ fontSize: '0.65em', padding: '0 0 0.12em' }}>
             <Col className="w-100">

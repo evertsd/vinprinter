@@ -1,3 +1,4 @@
+import { PURGE } from 'redux-persist';
 import { handleActions } from 'redux-actions';
 import { createSheet, saveLabel } from '../actions';
 
@@ -16,6 +17,7 @@ export default handleActions(
                 labels: { ...state[sheetId].labels, [labelLocation]: label.id },
             },
         }),
+        [PURGE]: () => initialState,
     },
     initialState
 );

@@ -1,3 +1,4 @@
+import { PURGE } from 'redux-persist';
 import { handleActions } from 'redux-actions';
 import { clearLabel, saveLabel } from '../actions';
 
@@ -22,6 +23,7 @@ export default handleActions(
                 ...label,
             },
         }),
+        [PURGE]: () => initialState,
     },
     initialState
 );

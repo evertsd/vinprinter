@@ -1,3 +1,4 @@
+import { PURGE } from 'redux-persist';
 import { handleActions } from 'redux-actions';
 import { createSession, createSheet, selectLabel } from '../actions';
 import { SHEET_LABEL_LOCATIONS } from '../schema';
@@ -33,6 +34,7 @@ export default handleActions(
                 currentLabel: labelLocation,
             },
         }),
+        [PURGE]: () => initialState,
     },
     initialState
 );

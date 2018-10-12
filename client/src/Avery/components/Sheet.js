@@ -25,7 +25,7 @@ const getEvenIndices = array =>
         .filter(i => i % 2 === 0);
 
 const Sheet = ({ className, isSelected, style, labels, LabelInsertComponent = BlankLabel, selectLabel }) => (
-    <div className={classNames('dib', className)} style={{ fontSize: '0.514in', padding: '0.7em 0', ...style }}>
+    <div className={classNames('dib', className)} style={{ fontSize: '0.514in', padding: '0.8em 0 0.6em', ...style }}>
         {getEvenIndices(SHEET_LABEL_LOCATIONS).map(i => (
             <LabelRow key={`avery-row-${i}`}>
                 <Label onClick={() => selectLabel(i)} isSelected={isSelected(i)}>

@@ -2,23 +2,9 @@ import React from 'react';
 import { Colors } from 'vinprinter-ink';
 import { updateAveryLabel } from 'Avery';
 import { Button, BTN_KINDS } from 'components';
+import parseInput from './parseCDKText';
 
 const SUBMIT_KEYCODE = 13;
-
-const parseInput = currentState => {
-    const data = currentState.batchInput.split(/\s/).filter(str => !!str);
-
-    return {
-        batchInput: currentState.batchInput,
-        stockNumber: data[1] || currentState.stockNumber,
-        year: data[3] || currentState.year,
-        make: data[5] || currentState.make,
-        model: data[7] || currentState.model,
-        vin: data[9] || currentState.vin,
-        color: data[11] || currentState.color,
-        miles: data[13] || currentState.miles,
-    };
-};
 
 const BatchInput = ({ onClear, onChangeValue, onNext, updateLabel, values }) => {
     const submitValues = () => {

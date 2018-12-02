@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
+import { StandardRectangle } from 'react-avery';
+
 import { clearLabel, saveLabel, selectLabel } from '../actions';
-import { SHEET_LABEL_LOCATIONS } from '../schema';
 import { selectSheetLabel } from '../selectors';
 
 const connectSession = connect(
@@ -18,7 +19,7 @@ const connectSession = connect(
         clearLabel: () => clearLabel({ id: label && label.id }),
         selectLabel: labelLocation => selectLabel({ labelLocation, sheetId, sessionId }),
         submitLabel: () => {
-            const nextLabelLocation = findNextLabelLocation(labelLocation);
+            const nextLabelLocation = StandardRectangle.findNextLabelLocation(labelLocation);
 
             saveLabel({ sheetId, labelLocation, label });
             selectLabel({ labelLocation: nextLabelLocation, sheetId, sessionId });
@@ -37,15 +38,5 @@ const connectSession = connect(
         },
     }
 );
-
-const findNextLabelLocation = labelLocation => {
-    const currentIndex = SHEET_LABEL_LOCATIONS.indexOf(labelLocation);
-
-    if (currentIndex < 0 || currentIndex + 1 >= SHEET_LABEL_LOCATIONS.length) {
-        return SHEET_LABEL_LOCATIONS[0];
-    }
-
-    return SHEET_LABEL_LOCATIONS[currentIndex + 1];
-};
 
 export const editSession = connectSession;

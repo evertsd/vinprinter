@@ -1,5 +1,6 @@
 import { createSelector } from 'reselect';
-import { REDUCER_KEY, SHEET_LABEL_LOCATIONS } from './schema';
+import { StandardRectangle } from 'react-avery';
+import { REDUCER_KEY } from './schema';
 
 export const selectSheets = state => state[REDUCER_KEY].sheets;
 export const selectSheet = createSelector(selectSheets, (_, id) => id, (sheets, id) => sheets[id]);
@@ -11,7 +12,7 @@ export const selectSession = (state, id) => {
 };
 
 export const selectSheetLabels = createSelector(selectSheet, selectLabels, (sheet, labels) => {
-    return SHEET_LABEL_LOCATIONS.reduce((sheetLabels, location) => {
+    return StandardRectangle.SHEET_LABEL_LOCATIONS.reduce((sheetLabels, location) => {
         if (sheet && sheet.labels && sheet.labels[location]) {
             sheetLabels[location] = labels[sheet.labels[location]];
         } else {

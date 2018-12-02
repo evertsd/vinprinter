@@ -1,7 +1,7 @@
 import { PURGE } from 'redux-persist';
 import { handleActions } from 'redux-actions';
+import { StandardRectangle } from 'react-avery';
 import { createSession, createSheet, selectLabel } from '../actions';
-import { SHEET_LABEL_LOCATIONS } from '../schema';
 
 export const initialState = {};
 
@@ -15,7 +15,7 @@ export default handleActions(
                 ...state,
                 [sessionId]: {
                     ...session,
-                    currentLabel: SHEET_LABEL_LOCATIONS[0],
+                    currentLabel: StandardRectangle.SHEET_LABEL_LOCATIONS[0],
                     currentSheet: id,
                     currentSheetIndex: sheets.length,
                     sheets: [...sheets, id],

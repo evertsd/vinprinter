@@ -1,5 +1,7 @@
 import React from 'react';
-import { SHEET_LABEL_LOCATIONS } from '../schema';
+import { StandardRectangle } from 'react-avery';
+
+const { SHEET_LABEL_LOCATIONS } = StandardRectangle;
 
 const LabelPickerOption = ({ option, onClick, style }) => (
     <a onClick={() => onClick(option)} className="bl bt bb pv2 tc w-10" style={style}>

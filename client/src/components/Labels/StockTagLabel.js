@@ -1,6 +1,9 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { compose } from 'recompose';
 import classNames from 'classnames';
-import { BlankLabel } from 'Avery';
+import { StandardRectangle } from 'react-avery';
+import { selectSheetLabel } from 'Avery/selectors';
 import { toNumber } from 'util/number';
 
 const Row = ({ children, className, style }) => (
@@ -16,13 +19,19 @@ const Col = ({ children, className, style }) => (
 
 const Label = ({ children, className }) => <label className={classNames('fw6 dib mb0', className)}>{children}</label>;
 
+const withLabelState = connect((state, { sheetId, location }) => {
+    const label = selectSheetLabel(state, sheetId, location) || {};
+
+    return { ...label };
+});
+
 const RequireStockTagValue = WrappedComponent => {
     const keys = ['color', 'make', 'miles', 'model', 'receivedFrom', 'receivedOn', 'stockNumber', 'vin', 'year'];
 
     return label => {
         const hasValue = keys.find(key => label[key] && (typeof label[key] !== 'string' || label[key].length > 0));
 
-        return hasValue ? <WrappedComponent {...label} /> : <BlankLabel />;
+        return hasValue ? <WrappedComponent {...label} /> : <StandardRectangle.BlankInsert />;
     };
 };
 
@@ -64,4 +73,7 @@ const StockTagLabel = ({ stockNumber, make, model, vin, color, miles, receivedFr
     </div>
 );
 
-export default RequireStockTagValue(StockTagLabel);
+export default compose(
+    withLabelState,
+    RequireStockTagValue
+)(StockTagLabel);

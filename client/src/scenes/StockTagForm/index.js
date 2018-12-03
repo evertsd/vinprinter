@@ -1,27 +1,42 @@
 import React from 'react';
-import { requireAverySessionSheet, PrintMediaQuery, Sheet } from 'Avery';
-import { Labels, SheetPreview } from 'components';
+import { StandardRectangle } from 'react-avery';
+import { connect } from 'react-redux';
+import { compose } from 'recompose';
+import { requireSessionSheet, selectLocation, selectSession } from 'Avery';
+import { Labels } from 'components';
 import Form from './Form';
 
-const NonPrintView = ({ session }) => (
-    <div className="flex justify-center pa3">
-        <div className="w-33">
-            <Form session={session} />
-        </div>
-        <div className="">
-            <SheetPreview session={session} sheetId={session.currentSheet} LabelInsertComponent={Labels.StockTagLabel} />
-        </div>
-    </div>
+const connectLayoutState = state => {
+    const session = selectSession(state);
+
+    return {
+        id: session.currentSheet,
+        selectedLocation: session.currentLabel,
+        session,
+    };
+};
+
+const withLayoutProps = connect(
+    connectLayoutState,
+    { selectLocation }
 );
 
-const PrintView = ({ session }) => <Sheet session={session} sheetId={session.currentSheet} LabelInsertComponent={Labels.StockTagLabel} />;
+const StockTagWrapper = ({ id, selectedLocation, selectLocation, session }) => {
+    if (!(session || id)) return null;
 
-const StockTagForm = PrintMediaQuery(NonPrintView, PrintView);
+    return (
+        <StandardRectangle.Layout
+            id={id}
+            className="w-33"
+            selectedLocation={selectedLocation}
+            selectLocation={selectLocation}
+            LabelInsertComponent={Labels.StockTagLabel}>
+            <Form />
+        </StandardRectangle.Layout>
+    );
+};
 
-const StockTagWrapper = requireAverySessionSheet(({ avery: { session } }) => {
-    if (!session) return null;
-
-    return <StockTagForm session={session} />;
-});
-
-export default StockTagWrapper;
+export default compose(
+    requireSessionSheet,
+    withLayoutProps
+)(StockTagWrapper);

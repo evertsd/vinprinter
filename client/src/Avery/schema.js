@@ -1,2 +1,18 @@
-export const SHEET_LABEL_LOCATIONS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 export const REDUCER_KEY = 'avery';
+
+/*
+interface Label {
+  id: string;
+  [key: string]: any;
+}
+
+type SheetLabels = { [location: number]: Label }
+
+interface Session = {
+  id: string;
+  currentLabel: number; // selected labelLocation
+  currentSheet: string;
+  currentSheetIndex: number
+  sheets: []string;
+}
+*/

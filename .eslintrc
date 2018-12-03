@@ -15,7 +15,7 @@
         "comma-dangle": [1, "always-multiline"],
         "comma-spacing": 1,
         "comma-style": 1,
-        "indent": ["error", 4],
+        "indent": ["error", 4, { "SwitchCase": 1 }],
         "prettier/prettier": [
             1,
             {

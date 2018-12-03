@@ -21,17 +21,3 @@ export const selectLocation = labelLocation => {
         dispatch(selectLabel({ sessionId: session.id, sheetId: session.currentSheet, labelLocation }));
     };
 };
-
-export const updateLabel = (sheetId, { id } = {}, labelLocation, updates) => {
-    const label = id ? { id, ...updates } : updates;
-
-    return saveLabel({ sheetId, labelLocation, label });
-};
-
-/*
-interface SelectLabelPayload {
-    labelLocation: number;
-    sheetId: string;
-    sessionId: string;
-}
-*/

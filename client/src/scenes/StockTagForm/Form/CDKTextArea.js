@@ -16,14 +16,14 @@ class BatchInputHelpers extends React.Component {
         this.props.onNextTab();
     };
 
-    updateLabelWrapper = e => {
+    onUpdateWrapper = e => {
         this.props.onUpdate(parseInput(e.target.value));
     };
 
-    render = () => <BatchInput {...this.props} onKeyDown={this.onKeyDown} updateLabel={this.updateLabelWrapper} />;
+    render = () => <BatchInput {...this.props} onKeyDown={this.onKeyDown} onUpdate={this.onUpdateWrapper} />;
 }
 
-const BatchInput = ({ clearLabel, onKeyDown, onNextTab, updateLabel, form }) => (
+const BatchInput = ({ clearLabel, form, onKeyDown, onNextTab, onUpdate }) => (
     <div className="mv2">
         <h3 className="mt3 mb1">Paste stock tag information</h3>
         <div className="flex">
@@ -33,7 +33,7 @@ const BatchInput = ({ clearLabel, onKeyDown, onNextTab, updateLabel, form }) => 
                 style={{ borderRadius: '2px', borderColor: Colors.Gray.Default, minHeight: '10rem' }}
                 placeholder="Paste stock tag information"
                 value={form.batchInput || ''}
-                onChange={updateLabel}
+                onChange={onUpdate}
                 onKeyDown={onKeyDown}
             />
         </div>

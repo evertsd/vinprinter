@@ -7,17 +7,19 @@ const inputKeys = {
     COLOR: 'color',
 };
 
-export default currentState => {
-    const lines = currentState.batchInput.split(/\n/).filter(str => !!str);
+const reduceCDKText = (label, line) => {
+    const data = line.split(/\s/).filter(str => !!str);
+    const key = inputKeys[data[0]];
 
-    return lines.reduce((label, line) => {
-        const data = line.split(/\s/).filter(str => !!str);
-        const key = inputKeys[data[0]];
+    if (key) {
+        label[key] = data.slice(1, data.length).join(' ');
+    }
 
-        if (key) {
-            label[key] = data.slice(1, data.length).join(' ');
-        }
+    return label;
+};
 
-        return label;
-    }, {});
+export default batchInput => {
+    const lines = batchInput.split(/\n/).filter(str => !!str);
+
+    return lines.reduce(reduceCDKText, { batchInput });
 };

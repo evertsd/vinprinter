@@ -22,6 +22,12 @@ export const selectLocation = labelLocation => {
     };
 };
 
+export const updateLabel = (sheetId, { id } = {}, labelLocation, updates) => {
+    const label = id ? { id, ...updates } : updates;
+
+    return saveLabel({ sheetId, labelLocation, label });
+};
+
 /*
 interface SelectLabelPayload {
     labelLocation: number;

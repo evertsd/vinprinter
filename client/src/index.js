@@ -15,7 +15,7 @@ render(
             <App persistor={persistor} />
         </PersistGate>
     </Provider>,
-    document.getElementById('root')
+    document.getElementById('root') // eslint-disable-line no-undef
 );
 
 registerServiceWorker();

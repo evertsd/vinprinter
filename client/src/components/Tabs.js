@@ -1,6 +1,5 @@
-import React from 'react';
 import { default as composeClassNames } from 'classnames';
-import { withState } from 'recompose';
+import React from 'react';
 import { Colors } from 'vinprinter-ink';
 
 let TabBar = ({ children, classNames, stretch, styles = {} }) => (
@@ -58,10 +57,17 @@ let TabsControlled = ({ children, activeTab, onSelect, stretch = false, ...props
     );
 };
 
-let enhance = withState('activeTab', 'setActiveTab', props => props.defaultActiveTab);
-let TabsUncontrolled = enhance(({ setActiveTab, ...props }) => {
-    return <TabsControlled {...props} onSelect={setActiveTab} />;
-});
+class TabsUncontrolled extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = { activeTab: props.defaultActiveTab };
+    }
+
+    setActiveTab = activeTab => this.setState({ activeTab });
+
+    render = () => <TabsControlled {...this.props} activeTab={this.state.activeTab} onSelect={this.setActiveTab} />;
+}
 
 export let Tabs = ({ onSelect, ...props }) => {
     if (onSelect) {

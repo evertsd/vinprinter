@@ -1,7 +1,7 @@
 import React from 'react';
 import { StandardRectangle } from 'react-avery';
 import { connect } from 'react-redux';
-import { compose } from 'recompose';
+import { compose } from 'redux';
 import { requireSessionSheet, selectLocation, selectSession } from 'Avery';
 import { Labels } from 'components';
 import Form from './Form';

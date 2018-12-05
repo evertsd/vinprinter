@@ -38,7 +38,7 @@ const withInputMode = WrappedComponent => {
 };
 
 const StockTagForm = ({ mode, setMode }) => (
-    <Tabs stretch={true} classNames={{ bar: 'w-100 ba br1' }} activeTab={mode} onSelect={setMode}>
+    <Tabs stretch={true} classNames={{ bar: 'w-100 ba br1 mt3' }} activeTab={mode} onSelect={setMode}>
         <Tab tabKey={INPUT_MODE.CDK_TEXT_AREA} title={INPUT_MODE.CDK_TEXT_AREA}>
             <CDKTextArea onNextTab={() => setMode(INPUT_MODE.FROM)} />
         </Tab>

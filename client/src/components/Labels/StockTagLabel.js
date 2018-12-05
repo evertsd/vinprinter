@@ -1,9 +1,8 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { compose } from 'recompose';
 import classNames from 'classnames';
+import React from 'react';
 import { StandardRectangle } from 'react-avery';
-import { selectSheetLabel } from 'Avery/selectors';
+import { compose } from 'redux';
+import { withLabelState } from 'Avery';
 import { toNumber } from 'util/number';
 
 const Row = ({ children, className, style }) => (
@@ -11,6 +10,7 @@ const Row = ({ children, className, style }) => (
         {children}
     </div>
 );
+
 const Col = ({ children, className, style }) => (
     <div className={classNames('dib', className)} style={style}>
         {children}
@@ -18,12 +18,6 @@ const Col = ({ children, className, style }) => (
 );
 
 const Label = ({ children, className }) => <label className={classNames('fw6 dib mb0', className)}>{children}</label>;
-
-const withLabelState = connect((state, { sheetId, location }) => {
-    const label = selectSheetLabel(state, sheetId, location) || {};
-
-    return { ...label };
-});
 
 const RequireStockTagValue = WrappedComponent => {
     const keys = ['color', 'make', 'miles', 'model', 'receivedFrom', 'receivedOn', 'stockNumber', 'vin', 'year'];

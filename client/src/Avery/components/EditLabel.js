@@ -2,7 +2,7 @@ import withDebounce from '@hocs/debounce-handler';
 import React from 'react';
 import { StandardRectangle } from 'react-avery';
 import { connect } from 'react-redux';
-import { compose } from 'recompose';
+import { compose } from 'redux';
 
 import { clearLabel, saveLabel, selectLabel } from '../actions';
 import { selectSession, selectSheetLabel } from '../selectors';

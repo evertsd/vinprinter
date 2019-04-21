@@ -1,5 +1,5 @@
 import React from 'react';
-import { Colors } from 'vinprinter-ink';
+import { Colors } from 'ink';
 import { EditLabel } from 'Avery';
 import { Button, BTN_KINDS } from 'components';
 import parseInput from './parseCDKText';
@@ -42,7 +42,7 @@ const BatchInput = ({ clearLabel, form, onKeyDown, onNextTab, onUpdate }) => (
                 Clear
             </Button>
             <Button onClick={onNextTab} className="w-50 ml2" kind={BTN_KINDS.PRIMARY}>
-                Save
+                Next
             </Button>
         </div>
     </div>

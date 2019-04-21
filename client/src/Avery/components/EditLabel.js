@@ -8,7 +8,8 @@ import { clearLabel, saveLabel, selectLabel } from '../actions';
 import { selectSession, selectSheetLabel } from '../selectors';
 
 const mapStateToLabel = state => {
-    const session = selectSession(state);
+    const session = selectSession(state) || {};
+
     const id = session.currentSheet;
     const labelLocation = session.currentLabel;
 

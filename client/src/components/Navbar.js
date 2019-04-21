@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Colors } from 'vinprinter-ink';
+import { Colors } from 'ink';
 import { createSession, PrintMediaQuery } from 'Avery';
 
 const connectSessionCreator = connect(

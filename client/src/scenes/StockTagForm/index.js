@@ -7,7 +7,7 @@ import { Labels } from 'components';
 import Form from './Form';
 
 const connectLayoutState = state => {
-    const session = selectSession(state);
+    const session = selectSession(state) || {};
 
     return {
         id: session.currentSheet,

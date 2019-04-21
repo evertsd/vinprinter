@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-import { Colors } from 'vinprinter-ink';
+import { Colors } from 'ink';
 
 export const BTN_KINDS = {
     DANGER: -2,

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Colors } from 'vinprinter-ink';
+import { Colors } from 'ink';
 import { EditLabel } from 'Avery';
 import { Button, BTN_KINDS } from 'components';
 import parseInput from './parseCDKText';

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Colors } from 'vinprinter-ink';
+import { Colors } from 'ink';
 
 export const InputLabel = ({ children }) => <label className="db mt3 mb1">{children}</label>;
 export const Input = ({ type = 'text', value = '', ...props }) => (

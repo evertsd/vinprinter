@@ -1,6 +1,6 @@
 import { default as composeClassNames } from 'classnames';
 import React from 'react';
-import { Colors } from 'vinprinter-ink';
+import { Colors } from 'ink';
 
 let TabBar = ({ children, classNames, stretch, styles = {} }) => (
     <div

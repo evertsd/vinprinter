@@ -1,10 +1,10 @@
 import React from 'react';
 import { Redirect, Route, Switch } from 'react-router';
 import { BrowserRouter } from 'react-router-dom';
-import 'App.css';
 import Navbar from 'components/Navbar';
 import ResetRedux from 'components/ResetRedux';
 import StockTagForm from 'scenes/StockTagForm';
+import './App.css';
 
 const BASE_ROUTE = '/vinprinter';
 

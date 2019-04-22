@@ -2,16 +2,7 @@ import React from 'react';
 import { EditLabel } from 'Avery';
 import { Button, BTN_KINDS, Input, InputLabel } from 'components';
 
-class FormHelpers extends React.Component {
-    onClear = () => {
-        this.props.clearLabel();
-        this.props.onResetTab();
-    };
-
-    render = () => <Form {...this.props} onClear={this.onClear} />;
-}
-
-const Form = ({ form, onClear, onNext, onUpdate }) => (
+const Form = ({ clearLabel, form, onNext, onResetTab, onUpdate }) => (
     <div className="mv2">
         <h3 className="mt3 mb0">Edit Label</h3>
         <div className="pb2">
@@ -63,7 +54,13 @@ const Form = ({ form, onClear, onNext, onUpdate }) => (
             </div>
         </div>
         <div className="flex mv3">
-            <Button onClick={onClear} className="w-50 mr2" kind={BTN_KINDS.DANGER}>
+            <Button
+                onClick={() => {
+                    clearLabel();
+                    onResetTab();
+                }}
+                className="w-50 mr2"
+                kind={BTN_KINDS.DANGER}>
                 Clear
             </Button>
             <Button onClick={onNext} className="w-50 ml2" kind={BTN_KINDS.PRIMARY}>
@@ -73,4 +70,4 @@ const Form = ({ form, onClear, onNext, onUpdate }) => (
     </div>
 );
 
-export default EditLabel(FormHelpers);
+export default EditLabel(Form);

@@ -6,24 +6,7 @@ import parseInput from './parseCDKText';
 
 const SUBMIT_KEYCODE = 13;
 
-class BatchInputHelpers extends React.Component {
-    onKeyDown = event => {
-        if (event.keyCode !== SUBMIT_KEYCODE) {
-            return;
-        }
-
-        event.stopPropagation();
-        this.props.onNextTab();
-    };
-
-    onUpdateWrapper = e => {
-        this.props.onUpdate(parseInput(e.target.value));
-    };
-
-    render = () => <BatchInput {...this.props} onKeyDown={this.onKeyDown} onUpdate={this.onUpdateWrapper} />;
-}
-
-const BatchInput = ({ clearLabel, form, onKeyDown, onNextTab, onUpdate }) => (
+const BatchInput = ({ clearLabel, form, onNextTab, onUpdate }) => (
     <div className="mv2">
         <h3 className="mt3 mb1">Paste stock tag information</h3>
         <div className="flex">
@@ -33,8 +16,15 @@ const BatchInput = ({ clearLabel, form, onKeyDown, onNextTab, onUpdate }) => (
                 style={{ borderRadius: '2px', borderColor: Colors.Gray.Default, minHeight: '10rem' }}
                 placeholder="Paste stock tag information"
                 value={form.batchInput || ''}
-                onChange={onUpdate}
-                onKeyDown={onKeyDown}
+                onChange={e => onUpdate(parseInput(e.target.value))}
+                onKeyDown={e => {
+                    if (e.keyCode !== SUBMIT_KEYCODE) {
+                        return;
+                    }
+
+                    e.stopPropagation();
+                    onNextTab();
+                }}
             />
         </div>
         <div className="flex mv3">
@@ -48,4 +38,4 @@ const BatchInput = ({ clearLabel, form, onKeyDown, onNextTab, onUpdate }) => (
     </div>
 );
 
-export default EditLabel(BatchInputHelpers);
+export default EditLabel(BatchInput);

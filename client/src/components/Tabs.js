@@ -1,5 +1,5 @@
 import { default as composeClassNames } from 'classnames';
-import React from 'react';
+import React, { useState } from 'react';
 import { Colors } from 'ink';
 
 let TabBar = ({ children, classNames, stretch, styles = {} }) => (
@@ -57,17 +57,11 @@ let TabsControlled = ({ children, activeTab, onSelect, stretch = false, ...props
     );
 };
 
-class TabsUncontrolled extends React.Component {
-    constructor(props) {
-        super(props);
+const TabsUncontrolled: React.FC = props => {
+    const [activeTab, setActiveTab] = useState(props.defaultActiveTab);
 
-        this.state = { activeTab: props.defaultActiveTab };
-    }
-
-    setActiveTab = activeTab => this.setState({ activeTab });
-
-    render = () => <TabsControlled {...this.props} activeTab={this.state.activeTab} onSelect={this.setActiveTab} />;
-}
+    return <TabsControlled {...props} activeTab={activeTab} onSelect={setActiveTab} />;
+};
 
 export let Tabs = ({ onSelect, ...props }) => {
     if (onSelect) {

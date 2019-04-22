@@ -1,5 +1,5 @@
 import withDebounce from '@hocs/debounce-handler';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { StandardRectangle } from 'react-avery';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
